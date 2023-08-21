@@ -1,0 +1,6 @@
+export {default as HomePage} from './home'
+export {default as ShopPage} from './shop'
+export {default as ProductDetails} from './productDetails'
+export {default as ContactPage} from './contact'
+export {default as AboutPage} from './about'
+export {default as NotFound} from './errors/notFound'
