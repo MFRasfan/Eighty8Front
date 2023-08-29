@@ -1,17 +1,16 @@
 import { toast } from "react-toastify";
-import { setLoading, setStaffList, setUserList } from "./userSlice";
-import { setCustomerList } from "../customer/customerSlice";
+import { setLoading, setStaffList, setUserList } from "./customerSlice";
 import { store } from "../..";
 import { makeRequest, setAuthToken, url } from "../../api";
 import { setUser } from "../auth/authSlice";
 
-export const createStaff=(data,cb)=>async dispatch=>{
+export const createCustomer=(data,cb)=>async dispatch=>{
     try {
         const accessToken= await store.getState().auth.accessToken
         setLoading(true)
         const response = await makeRequest({
             method: "post",
-            url: url.createStaff ,
+            url: url.createCustomer ,
             data,
             headers: { Authorization: `Bearer ${accessToken}` },
           });
@@ -29,33 +28,62 @@ export const createStaff=(data,cb)=>async dispatch=>{
 }
 
 
-export const getUserList=({role, page=1,limit=10},cb)=> async dispatch=>{
-    try{
-        dispatch(setLoading(true))
-        const accessToken= await store.getState().auth.accessToken
+// export const getUserList=({role, page=1,limit=10},cb)=> async dispatch=>{
+//     try{
+//         dispatch(setLoading(true))
+//         const accessToken= await store.getState().auth.accessToken
        
-        let _url = `${url.user}?role=${role}&page=${page}&limit=${limit}`
+//         let _url = `${url.user}?role=${role}&page=${page}&limit=${limit}`
         
-        const response = await makeRequest({
-            method: "get",
-            url: _url,
-            headers: { Authorization: `Bearer ${accessToken}` },
-          });
-        console.log(response)
-        if(role==="user"){
-           dispatch(setUserList(response))
-        }else{
-            dispatch(setStaffList(response))
-        }
-            dispatch(setLoading(false))
-            cb && cb(response)
+//         const response = await makeRequest({
+//             method: "get",
+//             url: _url,
+//             headers: { Authorization: `Bearer ${accessToken}` },
+//           });
+//         console.log(response)
+//         if(role==="user"){
+//            dispatch(setUserList(response))
+//         }else{
+//             dispatch(setStaffList(response))
+//         }
+//             dispatch(setLoading(false))
+//             cb && cb(response)
 
-    }catch(err){
-        console.log(err)
-        dispatch(setLoading(false))
-        toast.error(err.message)
+//     }catch(err){
+//         console.log(err)
+//         dispatch(setLoading(false))
+//         toast.error(err.message)
+//     }
+// }
+export const getUserList = ({ role, page = 1, limit = 10 }, cb) => async (dispatch) => {
+  try {
+    dispatch(setLoading(true));
+    const accessToken = await store.getState().auth.accessToken;
+
+    let _url = `${url.customer}?role=${role}&page=${page}&limit=${limit}`;
+
+    const response = await makeRequest({
+      method: "get",
+      url: _url,
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
+    console.log(response);
+
+    if (role === "Walk-In" || role === "Online" || role === "Guest") {
+      dispatch(setUserList(response));
+    } else {
+      dispatch(setStaffList(response));
     }
-}
+
+    dispatch(setLoading(false));
+    cb && cb(response);
+  } catch (err) {
+    console.log(err);
+    dispatch(setLoading(false));
+    toast.error(err.message);
+  }
+};
+
 
 export const updateUserById = (userid, body,cb) => async (dispatch) => {
     try {

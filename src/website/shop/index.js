@@ -114,7 +114,7 @@ console.log(filterList.driveTrain && filterList.driveTrain.length>0, filterList)
     <WebsiteLayout>
       <div className='flex flex-col p-10 bg-slate-50'>
         
-        <div className='flex'>
+        <div  className='flex'>
         <p className='text-3xl text-gray-700 font-bold mb-5 mx-3'>{ location.search?`Search Results for: ${decodeURIComponent(location.search.replace("?", ""))}` :'Get Your Dream'} </p>
        {!location.search && <FaCarAlt onClick={()=>getMakes()} size={40} className="text-gray-700" />}
 

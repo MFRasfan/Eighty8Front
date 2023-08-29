@@ -198,8 +198,8 @@ const VehicleEditForm = ({ toggleForm, data }) => {
           "overall_width": "",
           "wheelbase_length": "",
           "standard_seating": "",
-          "invoice_price": "",
-          "delivery_charges": "",
+          // "invoice_price": "",
+          // "delivery_charges": "",
           "manufacturer_suggested_retail_price": ""
         })
         setIsLoading(false)
@@ -304,6 +304,17 @@ const VehicleEditForm = ({ toggleForm, data }) => {
     setdeleteImages(temp)
 
   }
+
+
+  // useEffect(()=>{
+  //   console.log(input.vin)
+  // },)
+
+  const VinNumber = input.vin ? input.vin.slice(-6) : ''
+  
+  console.log(VinNumber)
+  console.log(input.vin)
+
 
   const renderImageSection = () => {
     return (
@@ -807,7 +818,7 @@ const VehicleEditForm = ({ toggleForm, data }) => {
 
         </div>
         <div className='flex flex-col space-x-4 md:flex-row'>
-          <div className='md:w-[30%]'>
+          <div className='md:w-[25%]'>
             <label className={`${formStyle.label} font-bold`}>Standard seating</label>
             <div className="mt-1 mb-1">
               <InputMask
@@ -820,7 +831,7 @@ const VehicleEditForm = ({ toggleForm, data }) => {
             </div>
           </div>
 
-          <div className='md:w-[30%]'>
+          {/* <div className='md:w-[30%]'>
             <label className={`${formStyle.label} font-bold`}>Invoice price</label>
             <div className="mt-1 mb-1">
               <InputMask
@@ -831,9 +842,9 @@ const VehicleEditForm = ({ toggleForm, data }) => {
                 onChange={onInputChange}
               />
             </div>
-          </div>
+          </div> */}
 
-          <div className='md:w-[30%]'>
+          {/* <div className='md:w-[30%]'>
             <label className={`${formStyle.label} font-bold`}>Delivery charges</label>
             <div className="mt-1 mb-1">
               <InputMask
@@ -844,9 +855,9 @@ const VehicleEditForm = ({ toggleForm, data }) => {
                 onChange={onInputChange}
               />
             </div>
-          </div>
+          </div> */}
 
-          <div className='md:w-[40%]'>
+          <div className='md:w-[30%]'>
             <label className={`${formStyle.label} font-bold`}>Manufacturer suggested retail price</label>
             <div className="mt-1 mb-1">
               <InputMask
@@ -893,6 +904,21 @@ const VehicleEditForm = ({ toggleForm, data }) => {
               type="text"
               className={formStyle.input}
               value={input.details.color}
+              onChange={onInputChange}
+            />
+          </div>
+        </div>
+
+        <div className='md:w-[30%]'>
+          <label className={`${formStyle.label} font-bold`}>Stock #</label>
+          <div className="mt-1 mb-1">
+            <input
+              name={"color"}
+              disabled
+              type="text"
+              className={formStyle.input}
+              value={`EEA-${VinNumber}`}
+              // value=""
               onChange={onInputChange}
             />
           </div>

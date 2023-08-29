@@ -62,6 +62,8 @@ const Vehicle = () => {
   setselectedVehicleEdit(item)
  }
 
+ 
+
 const handleStatusUpdate=(item,index)=>{
   // const temp = vehicleList.slice(0)
   // temp[index].status = item.status==="active"?"inactive":"active"
@@ -135,6 +137,7 @@ const defaultView=()=>{
     tdcells={renderRoleTableBody}
   
     />
+    {console.log(vehicleList)}
     </>
   )
 }

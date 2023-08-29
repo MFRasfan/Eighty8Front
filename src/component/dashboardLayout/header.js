@@ -61,7 +61,7 @@ const Header = () => {
 }  
 
 return (
-  <div className='fixed z-10 w-full top-0 '>
+  <div style={{zIndex: 999}} className='fixed  w-full top-0 '>
   <div className={style.headerContainer}>
        <div className='flex space-x-6'>
         <div>
