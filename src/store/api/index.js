@@ -2,8 +2,9 @@ import axios from 'axios';
 import { store } from '..';
 
 
-export const baseURL= 'http://localhost:4000/api'
-export const imageURL= 'http://localhost:4000/uploads/'
+// export const baseURL= 'http://localhost:4000/api'
+export const baseURL = 'https://eighty8alpha.com/api'
+export const imageURL = 'https://eighty8alpha.com/uploads/'
 
 export const VIN_API_KEY="I86JYDKNLF1RLK9"
 
