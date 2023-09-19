@@ -1,5 +1,5 @@
 import {
-  BrowserRouter,
+  HashRouter,
   Routes,
   Route,
 } from "react-router-dom";
@@ -50,7 +50,7 @@ function App() {
   console.log("role------------",user)
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <ToastContainer />
       <Routes>
         {/* PUBLIC ROUTES */}
@@ -112,7 +112,7 @@ function App() {
        <Route path="*"  exact  element={<NotFound/>}/>
        
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
