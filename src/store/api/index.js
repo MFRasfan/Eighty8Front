@@ -21,6 +21,7 @@ export const  url={
     role:'role/',
     user:'user/',
     userGain:'user/user-gain',
+    customer: 'user/customer',
 
     inquiry:'inquiry/',
     report:'inquiry/report',
@@ -36,6 +37,7 @@ export const  url={
     inquiryGetById:'inquiry/getbyId',
     userGetById:'user/getById',
     createStaff:'auth/registerStaff',
+    createCustomer: 'auth/registerCustomer' ,
     vehicleFilter:'vehicle/filter',
     getVehicleById:'vehicle/getbyId',
 

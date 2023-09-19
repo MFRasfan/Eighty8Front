@@ -29,9 +29,9 @@ const ProductDescription = ({details, goToInquiry}) => {
             <button className={`${style.tab}  ${activeTab==="Overview" && style.activeTab}`} onClick={()=>setactiveTab("Overview")}>
                 <p>Overview</p>
             </button>
-            <button className={`${style.tab} ${activeTab==="Pricing" && style.activeTab}`} onClick={()=>setactiveTab("Pricing")}>
+            {/* <button className={`${style.tab} ${activeTab==="Pricing" && style.activeTab}`} onClick={()=>setactiveTab("Pricing")}>
                 <p>Pricing</p>
-            </button>
+            </button> */}
             <button className={`${style.tab} ${activeTab==="Features" && style.activeTab}`} onClick={()=>setactiveTab("Features")}>
                 <p>Features</p>
             </button>
@@ -219,8 +219,8 @@ const ProductDescription = ({details, goToInquiry}) => {
     <div className='px-0 md:px-10'>
         <p className='bg-green-100/60 w-32 text-green-800 text-center mb-6 font-bold px-5 py-2 rounded-full'>Available</p>
         <p className='leading-10 text-gray-700 text-2xl'><span className='font-bold'>{details.year} {details.make} {details.model}</span> {details.trim} {details.style}</p>
-        <p className='leading-10 text-gray-700 text-2xl font-bold'>{details.sellingPrice}$</p>
-        <p className='text-gray-600 mb-6 text-sm '>{details.delivery_charges} delivery to <span className='text-green-800/60 px-1  cursor-pointer'>{details.made_in}, {details.made_in_city}</span></p>
+        <p className='leading-10 text-gray-700 text-2xl font-bold'>${details.sellingPrice ? details.sellingPrice.toLocaleString(undefined , {userGrouping: true}) : null}</p>
+        {/* <p className='text-gray-600 mb-6 text-sm '>{details.delivery_charges} delivery to <span className='text-green-800/60 px-1  cursor-pointer'>{details.made_in}, {details.made_in_city}</span></p> */}
 
         <button    
         onClick={()=>goToInquiry()}

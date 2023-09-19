@@ -20,7 +20,7 @@ const ProductCard = ({item}) => {
       <p className=' w-[80%]  '>
         <span className='text-lg font-semibold'>{details.year} {details.make} {details.model}</span><br/> {details.trim} {details.style}</p>
 <div className='mt-1'>
-<p className=' text-gray-700    font-semibold'>{details.sellingPrice}$</p>
+<p className=' text-gray-700    font-semibold'>${details.sellingPrice ? details.sellingPrice.toLocaleString(undefined , {userGrouping: true}) : null}</p>
   </div>              
 
       </div>

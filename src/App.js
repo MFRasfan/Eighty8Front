@@ -1,5 +1,6 @@
 import {
-  BrowserRouter,
+  // BrowserRouter,
+  HashRouter ,
   Routes,
   Route,
 } from "react-router-dom";
@@ -8,6 +9,7 @@ import {
   AboutPage,
   ContactPage,
   ProductDetails,
+  
   ShopPage,
   NotFound
 } from "./website";
@@ -50,7 +52,7 @@ function App() {
   console.log("role------------",user)
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <ToastContainer />
       <Routes>
         {/* PUBLIC ROUTES */}
@@ -112,7 +114,7 @@ function App() {
        <Route path="*"  exact  element={<NotFound/>}/>
        
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

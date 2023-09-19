@@ -37,6 +37,7 @@ const Login = ({setactiveTab, closeModal}) => {
         if(data &&data.role){
           const {role}= data.role
           
+          let temp = role === "admin" ? "management":role
           if(role==="user"){
            
             setTimeout(() => {
@@ -44,7 +45,6 @@ const Login = ({setactiveTab, closeModal}) => {
             }, 2000);
           }else{
           setTimeout(() => {
-            let temp = role ==="admin"?"management":role
             navigation(`/${temp}`)
           }, 2000);
           }
