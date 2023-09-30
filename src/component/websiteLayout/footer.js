@@ -30,7 +30,7 @@ const Footer = () => {
     <div>
 
    
-      <div class="md:h-[80vh] bg-white pt-20 grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="md:h-[80vh] bg-white pt-20 grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className='px-20 flex flex-col space-y-5'>
               <p className='text-3xl text-gray-700 font-bold'>EXPLORE COMPANY</p>
               <Link to="/"> <p className='text-gray-700 hover:text-primary hover:font-semibold duration-300 ease-in-out '>Home </p> </Link>

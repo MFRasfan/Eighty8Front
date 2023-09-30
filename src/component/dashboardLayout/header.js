@@ -56,7 +56,7 @@ const Header = () => {
   const style={
   link:'text-gray-600 font-semibold text-lg duration-300 ease-in-out hover:text-primary cursor-pointer',
   navbrand:'text-primary font-bold text-3xl',
-  headerContainer:' bg-white shadow-md justify-between px-10 w-full h-[70px] flex items-center',
+  headerContainer:' bg-white shadow-md justify-between px-10  h-[70px] flex items-center',
   activeLink:'text-primary font-bold'
 }  
 

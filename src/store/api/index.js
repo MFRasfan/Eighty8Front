@@ -4,7 +4,8 @@ import { store } from '..';
 
 // export const baseURL= 'http://localhost:4000/api'
 export const baseURL = 'https://eighty8alpha.com/api'
-export const imageURL = 'https://eighty8alpha.com/uploads/'
+export const imageURL = 'https://eighty8alpha-dev.s3.amazonaws.com/'
+// export const imageURL= 'http://localhost:4000/uploads/'
 
 export const VIN_API_KEY="I86JYDKNLF1RLK9"
 

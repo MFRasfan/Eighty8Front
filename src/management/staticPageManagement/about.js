@@ -220,21 +220,22 @@ function About() {
         formData.append('file', imageFile)
 
         dispatch(uploadMedia(formData, image=>{
+          console.log("image==============",image)
           if(image.data && image.data.url){
-            const section1 = {}
-           section1.image = image.data.url
+            let obj = {}
+           obj.image = image.data.url
             if(section1.title){
-             section1.title= section1.title
+             obj.title= section1.title
             }
            
           
             if(section1.description ){
-             section1.description = section1.description
+             obj.description = section1.description
             }
 
-            console.log("1=========", {section1})
+            console.log("1=========", {obj})
             
-            dispatch(addAndUpdateAbout({section1}, res=>{
+            dispatch(addAndUpdateAbout({section1:obj}, res=>{
               console.log("res----------",res)
             } ))
           }

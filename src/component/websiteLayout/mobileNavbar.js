@@ -5,7 +5,9 @@ import {AiOutlineMenu, AiOutlineUser} from 'react-icons/ai'
 import {BiCart} from "react-icons/bi"
 import { Link, useNavigate} from 'react-router-dom'
 
-const MobileNavbar = ({className, closeModal}) => {
+const MobileNavbar = ({className, closeModal, children, isLoggedIn}) => {
+
+  console.log(children)
   const [showLang, setshowLang] = useState(false)
   const [selectedLang, setselectedLang] = useState("ENG")
   const navigate= useNavigate()
@@ -16,7 +18,7 @@ const MobileNavbar = ({className, closeModal}) => {
     <div className='flex justify-between items-start'>
         <img src={require("../../assets/logo.png")} className="w-16 h-16 -mt-5"/>
         <div className='absolute right-10 flex space-x-3'>
-       <AiOutlineUser size={24}  onClick={()=>navigate(`/profile`)} className=" hover:text-secondary opacity-70"/>
+       {isLoggedIn &&<AiOutlineUser size={24}  onClick={()=>navigate(`/profile`)} className=" hover:text-secondary opacity-70"/>}
         
           <AiOutlineMenu size={24}   onClick={()=>closeModal()} className="  hover:text-secondary opacity-70"/>
         </div>
@@ -37,7 +39,7 @@ const MobileNavbar = ({className, closeModal}) => {
           </li>
           <li className='w-28 cursor-pointer transition-all ease-in-out duration-300 hover:text-secondary'>
           <Link to="/aboutus" >
-            <a>About US</a>
+            <a>About Us</a>
           </Link>
           </li>
           <li className='w-28 cursor-pointer transition-all ease-in-out duration-300 hover:text-secondary'>
@@ -45,6 +47,9 @@ const MobileNavbar = ({className, closeModal}) => {
           <a>Contact Us</a>
           </Link>
           </li>
+          {/* <li className='w-28 cursor-pointer transition-all ease-in-out duration-300 hover:text-secondary'> */}
+            {children}
+            {/* </li> */}
         
             {/* <li>
               <div>

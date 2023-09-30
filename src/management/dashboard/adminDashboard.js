@@ -51,7 +51,7 @@ const AdminDashboard = () => {
   
   const cards=(item,index)=>{
     return(
-      <div key={item.name+index} className={`shadow-md w-[200px] rounded-md flex 
+      <div key={item.name+index} className={`shadow-md xs:w-[80%] sm:w-[200px] rounded-md flex 
       flex-col space-y-4 justify-center p-5 ${index===0 && 'mt-4 ml-4'}`}>
         <p className='font-bold text-gray-700 text-2xl'>{item.name}</p>
         <p className='font-bold text-primary text-4xl'>{item.quantity}</p>
@@ -62,13 +62,13 @@ const AdminDashboard = () => {
    <DashboardLayout>
      <p className={`${formStyle.h1Dashboard} px-5`}>Dashboard</p>
 
-    <div className='flex'>
-      <div className=' flex flex-wrap space-x-4 space-y-4 w-[35vw]'>
+    <div className='flex xs:flex-col lg:flex-row'>
+      <div className='flex xs:flex-col sm:flex-row xs:w-[100%] mb-16 lg:mb-0 lg:w-[35vw]  flex-wrap space-x-4 space-y-4'>
        {inquiryStats.map((item,index)=>cards(item,index))}
        {/* {cards()} */}
       </div>
       <div >
-        <div className=' flex items-center justify-center'>
+        <div className=' flex sm:flex-col md:flex-row items-center justify-center'>
           <div className='w-[20vw]'>
           <PieChart Data={userGained}/>
           </div>

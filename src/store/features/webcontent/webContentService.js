@@ -12,6 +12,7 @@ export const addAndUpdateHome= (data, cb)=> async dispatch=>{
         data
     })
     const {error,message}=response
+    console.log(message)
     if(message){
         toast.success(message)
     }
@@ -34,7 +35,6 @@ export const getHome=(cb)=>async dispatch=>{
    
     if(response){
 
-      console.log(response)
     dispatch(setHomeContent(response))
       cb(response)
     }

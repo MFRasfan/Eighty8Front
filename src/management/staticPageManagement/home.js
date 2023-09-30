@@ -53,12 +53,17 @@ function Home() {
 
   const dispatch = useDispatch();
   const [homeDetails, sethomeDetails] = useState({});
+  const [fetchDetails, setfetchDetails] = useState(0)
+  
 
-  useEffect(() => {
-    dispatch(
-      getHome((data) => {
+
+  async function fetchDetailsHandler() {
+      console.log(fetchDetails)
+      if(fetchDetails<1){
+      dispatch(getHome((data) => {
+        console.log("run");
         if (data && data.length > 0) {
-          console.log(data[0]);
+          console.log(data);
           sethomeDetails(data[0]);
           if (data[0].section1_banner) {
             setbannerDetails(data[0].section1_banner);
@@ -76,10 +81,20 @@ function Home() {
           if (data[0].section5 !== undefined) {
             setsection5(data[0].section5);
           }
+          let val=fetchDetails+1
+          setfetchDetails(val);
         }
-      })
-    );
+      }));
+    };
+    
+  
+  }
+  useEffect(() => {
+    if(fetchDetails<1){
+      fetchDetailsHandler();
+    }
   }, []);
+
 
   const handleDeleteDBImages = (item, index) => {
     //remove image from array but not update in database
@@ -96,7 +111,9 @@ function Home() {
 
   const onInputChange = (e, type) => {
     if (type === "section1") {
-      setbannerDetails({ ...bannerDetails, [e.target.name]: e.target.value });
+      let value= { ...bannerDetails, [e.target.name]: e.target.value }
+      console.log("valuue==========", value)
+      setbannerDetails(value);
     }
   };
 
@@ -286,7 +303,10 @@ function Home() {
 
   const handleSection2Change = (val, index) => {
     let temp = section2.slice(0);
+    console.log(1,temp)
     temp[index] = val;
+    console.log(2,temp)
+
     setsection2(temp);
   };
   
@@ -334,7 +354,7 @@ function Home() {
   };
 
   const submitSection2 = () => {
-    console.log("SC1_imageFile", SC1_imageFile);
+    console.log("section2 details", section2);
 
     try {
       if (!section2[0].title) {
@@ -411,7 +431,18 @@ function Home() {
 
       if (section2[0].ImagePreview) {
         uploadCar1Image();
+      } 
+      else if (!section2[0].ImagePreview && section2[1].ImagePreview) {
+        uploadCar2Image();
       }
+      else if (!section2[0].ImagePreview && !section2[1].ImagePreview && section2[2].ImagePreview) {
+        uploadCar3Image();
+      }
+      else if(!section2[0].ImagePreview && !section2[1].ImagePreview && !section2[2].ImagePreview){
+        submitSection2Final()
+      }
+   
+    
     } catch (error) {
       toast.error(error.message || error);
     }
@@ -626,6 +657,7 @@ function Home() {
     );
     console.log(justUploadedImages);
   };
+
   return (
     <div className="w-[64vw]">
       <Accordion>

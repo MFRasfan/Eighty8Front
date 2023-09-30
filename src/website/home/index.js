@@ -12,25 +12,35 @@ import { CategoryContainer } from './sections/browseByCategory';
 const Home = () => {
   const [homeDetails, setHomeDetails] = useState({});
   const home = useSelector((state) => state.webContent.home);
+  const [fetchDetails, setfetchDetails] = useState(false)
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (Object.keys(home).length === 0) {
-      dispatch(getHome((data) => setHomeDetails(data[0])));
-    } else {
-      setHomeDetails(home);
-    }
+    if ( !!home) {
+      if(Object.keys(home).length === 0 && !fetchDetails){
+        dispatch(getHome((data) => {
+          if(!!data && !!data[0]){
+            setHomeDetails(data[0])
+            setfetchDetails(true)
+          }
+        }));
+        
+      } else {
+        setHomeDetails(home);
+      }
+      }
   }, [dispatch, home]);
-
-  console.log('homeDetails-----------', homeDetails);
-
+  
+  
+ 
   return (
     <WebsiteLayout>
-      <Banner data={homeDetails.section1_banner} />
-      <HowItWorks data={homeDetails.section2} />
-      <QualityCheckPoint data={homeDetails.section3} />
-      <FanVideo data={homeDetails.section4} />
-      <Featured data={homeDetails.section5} /> 
+    {!!homeDetails.section1_banner && <Banner data={homeDetails.section1_banner} />}
+     {!!homeDetails.section2 && <HowItWorks data={homeDetails.section2} />}
+     {!!homeDetails.section3 && <QualityCheckPoint data={homeDetails.section3} />}
+    {!!homeDetails.section4 &&  <FanVideo data={homeDetails.section4} />}
+     {!!homeDetails.section5 && <Featured data={homeDetails.section5} /> }
+  
       <CategoryContainer />
       <BrowseByCategory />
     

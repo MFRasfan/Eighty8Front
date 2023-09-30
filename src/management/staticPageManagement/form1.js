@@ -4,18 +4,24 @@ import { BiImageAdd } from 'react-icons/bi';
 import { imageURL } from '../../store/api';
 
 function Form1(props) {
+
   const { data = {}, idkey, setData, showMedia = true, showVideo = false, showDescription = true, setimageFile, handleSubmit } = props;
   const [input, setinput] = useState({ ...data });
   const [ImagePreview, setImagePreview] = useState(data.ImagePreview || '');
 
+
   useEffect(() => {
     setinput({ ...data });
     setImagePreview(data.ImagePreview || '');
-  }, [data]);
+  }, [Object.keys(data).length]);
 
   const onInputChange = (e) => {
-    setinput({ ...input, [e.target.name]: e.target.value });
+    let val={ ...input, [e.target.name]: e.target.value }
+    setinput(val);
+    setData(val);
   };
+
+  console.log("props.data", props.data, input)
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];

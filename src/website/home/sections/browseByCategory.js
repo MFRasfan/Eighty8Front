@@ -80,18 +80,17 @@ export const CategoryContainer = ({ item, index }) => {
       }
 
       localStorage.setItem("selectedModels", JSON.stringify(selectedModels));
-      console.log(selectedModels);
       setCars(selectedModels);
      
     }
   }, []);
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const navigate = useNavigate();
+
   return (
     <div className="px-20 text-center">
       <p className={`text-3xl  font-bold text-gray-700 my-20`}>{makeTitle}</p>
-      <div class="grid grid-cols-2 gap-4  md:grid-cols-4 md:gap-4">
+      <div className="grid grid-cols-2 gap-4  md:grid-cols-4 md:gap-4">
         {cars.map((item, index) => (
           <div onClick={() => navigate(`/shop?${item.make}`)}>
             <p className="text-gray-700 hover:text-primary hover:font-bold  duration-300 ease-in-out cursor-pointer">
@@ -101,9 +100,9 @@ export const CategoryContainer = ({ item, index }) => {
         ))}
       </div>
       <p className={`text-3xl  font-bold text-gray-700 my-20`}>{styleTitle}</p>
-      <div class="grid grid-cols-2 gap-4  md:grid-cols-4 md:gap-4">
+      <div className="grid grid-cols-2 gap-4  md:grid-cols-4 md:gap-4">
         {cars.map((item, index) => (
-          <div onClick={() => navigate(`/shop?${item.model}`)}>
+          <div key={Math.random()+item.make} onClick={() => navigate(`/shop?${item.model}`)}>
             <p className="text-gray-700 hover:text-primary hover:font-bold  duration-300 ease-in-out cursor-pointer">
               {item.make}
             </p>

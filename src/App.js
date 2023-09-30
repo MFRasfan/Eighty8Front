@@ -49,7 +49,7 @@ function App() {
       setrole(role);
     }
   }, [user]);
-  console.log("role------------",user)
+  
 
   return (
     <HashRouter>
