@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useLocation, useParams } from "react-router-dom";
 import AuthModal from "../authModel";
-import Logo from "../../assets/logo.png";
+import Logo from "../../assets/logo.svg";
 import MobileNavbar from "./mobileNavbar";
 // import ButtonSmall from "../btnSmall";
 import ButtonIcon from "../buttonIcon";

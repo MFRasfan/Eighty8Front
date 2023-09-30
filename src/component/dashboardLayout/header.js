@@ -5,7 +5,7 @@ import AuthModal from '../authModel';
 import {RiNotification3Line} from 'react-icons/ri'
 import { useSelector } from 'react-redux';
 import { imageURL } from '../../store/api';
-import Logo from '../../assets/logo.png'
+import Logo from '../../assets/logo.svg'
 import { getAllNotifications } from '../../store/features/notification/notificationService';
 import { useDispatch} from 'react-redux'
 

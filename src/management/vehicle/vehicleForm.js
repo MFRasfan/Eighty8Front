@@ -1183,8 +1183,7 @@ const VehicleForm = ({ toggleForm }) => {
                             type="text"
                             disabled
                             value={
-                              parseFloat(purchase.amount) +
-                                purchase.taxAmount || 0
+                              parseFloat(purchase.amount) + parseFloat(purchase.taxAmount || 0)
                             }
                             className="rounded-md p-2 my-2 focus:border-secondary/60 focus:outline-none h-12 w-full border-2 border-gray-100"
                           />
@@ -1212,6 +1211,38 @@ const VehicleForm = ({ toggleForm }) => {
                         </td>
                       </tr>
                     ))}
+                 {purchases.length>0 &&   <tr
+                        className="hover:bg-gray-50 duration-300 ease-in-out "
+                       
+                      >
+                        <td className="p-0 px-1 text-sm font-medium text-right whitespace-nowrap">
+                          
+                        </td>
+                        <td className="p-0 px-1 text-sm font-medium text-right whitespace-nowrap">
+                         
+                        </td>
+                        <td className="p-0 px-1 text-sm font-medium text-right whitespace-nowrap">
+                         
+                        </td>
+                        <td className="p-0 px-1 text-sm font-medium text-right whitespace-nowrap">
+                        HST Total:  {String( purchases.reduce((total, obj) => total + obj.taxAmount, 0))}
+                        </td>
+                        <td className="p-0 px-1 text-sm font-medium text-right whitespace-nowrap">
+                       Grand Total: {  purchases.reduce((total2, obj2) => parseFloat( total2 + parseFloat(obj2.amount) + parseFloat(obj2.taxAmount)), 0) ||0}
+                         
+                        </td>
+                        <td
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                          className="p-0 px-1 text-sm font-medium text-right whitespace-nowrap d-flex justify-center"
+                        >
+                       
+                        </td>
+                      </tr>}
+                  
                 </tbody>
               </table>
             </div>
@@ -1356,11 +1387,43 @@ const VehicleForm = ({ toggleForm }) => {
                       </td>
                     </tr>
                   ))}
+                  {expenseItems.length>0 &&   <tr
+                        className="hover:bg-gray-50 duration-300 ease-in-out "
+                       
+                      >
+                        <td className="p-0 px-1 text-sm font-medium text-right whitespace-nowrap">
+                          
+                        </td>
+                        <td className="p-0 px-1 text-sm font-medium text-right whitespace-nowrap">
+                         
+                        </td>
+                        <td className="p-0 px-1 text-sm font-medium text-right whitespace-nowrap">
+                         
+                        </td>
+                        <td className="p-0 px-1 text-sm font-medium text-right whitespace-nowrap">
+                        HST Total:  {String( expenseItems.reduce((total, obj) => total + obj.taxAmount, 0))}
+                        </td>
+                        <td className="p-0 px-1 text-sm font-medium text-right whitespace-nowrap">
+                       Grand Total: {  expenseItems.reduce((total2, obj2) => parseFloat( total2 + parseFloat(obj2.amount) + parseFloat(obj2.taxAmount)), 0) ||0}
+                         
+                        </td>
+                        <td
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                          className="p-0 px-1 text-sm font-medium text-right whitespace-nowrap d-flex justify-center"
+                        >
+                       
+                        </td>
+                      </tr>}
                 </tbody>
               </table>
             </div>
           </div>
         </div>
+      
       </>
     );
   };
@@ -1524,6 +1587,41 @@ const VehicleForm = ({ toggleForm }) => {
                       </td>
                     </tr>
                   ))}
+                  {sales.length>0 &&   <tr
+                        className="hover:bg-gray-50 duration-300 ease-in-out "
+                       
+                      >
+                        <td className="p-0 px-1 text-sm font-medium text-right whitespace-nowrap">
+                          
+                        </td>
+                        <td className="p-0 px-1 text-sm font-medium text-right whitespace-nowrap">
+                         
+                        </td>
+                        <td className="p-0 px-1 text-sm font-medium text-right whitespace-nowrap">
+                         
+                        </td>
+                        <td className="p-0 px-1 text-sm font-medium text-right whitespace-nowrap">
+                        HST Total:  {String( sales.reduce((total, obj) => total + obj.taxAmount, 0))}
+                        </td>
+                        <td className="p-0 px-1 text-sm font-medium text-right whitespace-nowrap">
+                       HST Total: {  sales.reduce((total2, obj2) => parseFloat( total2 + parseFloat(obj2.cost)), 0) ||0}
+                         
+                        </td>
+                        <td className="p-0 px-1 text-sm font-medium text-right whitespace-nowrap">
+                       Grand Total: {  sales.reduce((total2, obj2) => parseFloat( total2 + parseFloat(obj2.amount) +  parseFloat(obj2.cost)+ parseFloat(obj2.taxAmount)), 0) ||0}
+                         
+                        </td>
+                        <td
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                          className="p-0 px-1 text-sm font-medium text-right whitespace-nowrap d-flex justify-center"
+                        >
+                       
+                        </td>
+                      </tr>}
                 </tbody>
               </table>
             </div>
