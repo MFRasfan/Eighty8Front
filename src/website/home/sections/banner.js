@@ -18,7 +18,7 @@ const Banner = ({data={}}) => {
       backgroundRepeat: 'no-repeat'}}
       className="h-[90vh] w-full flex items-center"
     >
-      <div className='md:w-[50%] h-[100%]'/>
+      <div className='md:w-[55%] h-[100%]'/>
       <div 
       style={{backgroundColor:'rgba(235, 64, 52,0.4)'}}
       className='h-[100%] flex items-center px-20'>

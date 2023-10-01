@@ -32,7 +32,7 @@ const AuthLayout = ({children}) => {
       style={{backgroundColor:'rgba(235, 64, 52,0.6)'}}
       className='h-[100%] w-[100%] flex items-center px-20'>
         <div className='w-[70%]'>
-        {/* <p className='text-7xl font-bold text-white mb-10 '>Eighty Eight Alpha Autos</p> */}
+        {/* <p className='text-7xl font-bold text-white mb-10 '>Eighty 8 Alpha Autos</p> */}
           <p className='text-5xl font-bold text-white '>Car buying made easy</p>
           <p className='text-3xl font-semibold text-white py-4'>Shop thousands of used cars online.</p>
           <Button title={"Shop Now"} onClick={()=>navigation("/shop")}/>
