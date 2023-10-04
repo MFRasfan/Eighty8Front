@@ -58,17 +58,13 @@ function Home() {
 
 
   async function fetchDetailsHandler() {
-      console.log(fetchDetails)
       if(fetchDetails<1){
       dispatch(getHome((data) => {
-        console.log("run");
         if (data && data.length > 0) {
-          console.log(data);
           sethomeDetails(data[0]);
           if (data[0].section1_banner) {
             setbannerDetails(data[0].section1_banner);
           }
-          console.log(data[0].section2);
           if (data[0].section2 !== undefined) {
             setsection2(data[0].section2);
           }
@@ -112,7 +108,6 @@ function Home() {
   const onInputChange = (e, type) => {
     if (type === "section1") {
       let value= { ...bannerDetails, [e.target.name]: e.target.value }
-      console.log("valuue==========", value)
       setbannerDetails(value);
     }
   };
@@ -138,7 +133,6 @@ function Home() {
   const handleDelete = async (filename) => {
     await dispatch(
       deleteImage(filename, (response) => {
-        console.log("=========================", filename, response);
         if (response.message) {
           setdeleteImages((prev) => prev.filter((item) => item !== filename));
         } else {
@@ -232,27 +226,27 @@ function Home() {
       if (!bannerDetails.title) {
         throw "Please enter banner title";
       }
-      if (bannerDetails.title.length < 10) {
-        throw "Banner title length should be min 10 characters long";
-      }
+      // if (bannerDetails.title.length < 10) {
+      //   throw "Banner title length should be min 10 characters long";
+      // }
 
-      if (bannerDetails.title.length > 20) {
-        throw "Banner title length should be max 20 characters long";
-      }
+      // if (bannerDetails.title.length > 20) {
+      //   throw "Banner title length should be max 20 characters long";
+      // }
       if (!bannerDetails.description) {
         throw "Please enter banner caption";
       }
-      if (bannerDetails.description.length < 10) {
-        throw "Banner caption length should be min 10 characters long";
-      }
-      if (bannerDetails.description.length > 54) {
-        throw "Banner caption length should be max 54 characters long";
-      }
+      // if (bannerDetails.description.length < 10) {
+      //   throw "Banner caption length should be min 10 characters long";
+      // }
+      // if (bannerDetails.description.length > 54) {
+      //   throw "Banner caption length should be max 54 characters long";
+      // }
       if (!bannerDetails.image && !ImagePreview) {
         throw "Please select banner image";
       }
 
-      console.log("aaaaaaaaaaaaaaa", imageFile);
+      // console.log("aaaaaaaaaaaaaaa", imageFile);
       if (ImagePreview) {
         const formData = new FormData();
         formData.append("file", imageFile);
@@ -360,22 +354,22 @@ function Home() {
       if (!section2[0].title) {
         throw "Please enter card one title";
       }
-      if (section2[0].title.length < 10) {
-        throw "card one title length should be min 10 characters long";
-      }
+      // if (section2[0].title.length < 10) {
+      //   throw "card one title length should be min 10 characters long";
+      // }
 
-      if (section2[0].title.length > 20) {
-        throw "card one title length should be max 20 characters long";
-      }
+      // if (section2[0].title.length > 20) {
+      //   throw "card one title length should be max 20 characters long";
+      // }
       if (!section2[0].description) {
         throw "Please enter card one caption";
       }
-      if (section2[0].description.length < 10) {
-        throw "card one caption length should be min 10 characters long";
-      }
-      if (section2[0].description.length > 70) {
-        throw "card one caption length should be max 70 characters long";
-      }
+      // if (section2[0].description.length < 10) {
+      //   throw "card one caption length should be min 10 characters long";
+      // }
+      // if (section2[0].description.length > 70) {
+      //   throw "card one caption length should be max 70 characters long";
+      // }
       if (!section2[0].image && !section2[0].ImagePreview) {
         throw "Please select card one image";
       }
@@ -384,22 +378,22 @@ function Home() {
       if (!section2[1].title) {
         throw "Please enter card two title";
       }
-      if (section2[1].title.length < 10) {
-        throw "card two title length should be min 10 characters long";
-      }
+      // if (section2[1].title.length < 10) {
+      //   throw "card two title length should be min 10 characters long";
+      // }
 
-      if (section2[1].title.length > 20) {
-        throw "card two title length should be max 20 characters long";
-      }
+      // if (section2[1].title.length > 20) {
+      //   throw "card two title length should be max 20 characters long";
+      // }
       if (!section2[1].description) {
         throw "Please enter card two caption";
       }
-      if (section2[1].description.length < 10) {
-        throw "card two caption length should be min 10 characters long";
-      }
-      if (section2[1].description.length > 70) {
-        throw "card two caption length should be max 70 characters long";
-      }
+      // if (section2[1].description.length < 10) {
+      //   throw "card two caption length should be min 10 characters long";
+      // }
+      // if (section2[1].description.length > 70) {
+      //   throw "card two caption length should be max 70 characters long";
+      // }
       if (!section2[1].image && !section2[1].ImagePreview) {
         throw "Please select card two image";
       }
@@ -409,22 +403,22 @@ function Home() {
       if (!section2[2].title) {
         throw "Please enter card three title";
       }
-      if (section2[2].title.length < 10) {
-        throw "card three title length should be min 10 characters long";
-      }
+      // if (section2[2].title.length < 10) {
+      //   throw "card three title length should be min 10 characters long";
+      // }
 
-      if (section2[2].title.length > 20) {
-        throw "card three title length should be max 20 characters long";
-      }
+      // if (section2[2].title.length > 20) {
+      //   throw "card three title length should be max 20 characters long";
+      // }
       if (!section2[2].description) {
         throw "Please enter card three caption";
       }
-      if (section2[2].description.length < 10) {
-        throw "card three caption length should be min 10 characters long";
-      }
-      if (section2[2].description.length > 70) {
-        throw "card three caption length should be max 70 characters long";
-      }
+      // if (section2[2].description.length < 10) {
+      //   throw "card three caption length should be min 10 characters long";
+      // }
+      // if (section2[2].description.length > 70) {
+      //   throw "card three caption length should be max 70 characters long";
+      // }
       if (!section2[2].image && !section2[2].ImagePreview) {
         throw "Please select card three image";
       }
@@ -454,22 +448,22 @@ function Home() {
       if (!section3.title) {
         throw "Please enter section 3 title";
       }
-      if (section3.title.length < 10) {
-        throw "section three title length should be min 10 characters long";
-      }
+      // if (section3.title.length < 10) {
+      //   throw "section three title length should be min 10 characters long";
+      // }
 
-      if (section3.title.length > 25) {
-        throw "section three title length should be max 25 characters long";
-      }
+      // if (section3.title.length > 25) {
+      //   throw "section three title length should be max 25 characters long";
+      // }
       if (!section3.description) {
         throw "Please enter section three caption";
       }
-      if (section3.description.length < 10) {
-        throw "section three caption length should be min 10 characters long";
-      }
-      if (section3.description.length > 300) {
-        throw "section three caption length should be max 300 characters long";
-      }
+      // if (section3.description.length < 10) {
+      //   throw "section three caption length should be min 10 characters long";
+      // }
+      // if (section3.description.length > 300) {
+      //   throw "section three caption length should be max 300 characters long";
+      // }
       if (!section3.image && !section3.ImagePreview) {
         throw "Please select section three image";
       }
@@ -516,13 +510,13 @@ function Home() {
       if (!section4.title) {
         throw "Please enter section 3 title";
       }
-      if (section4.title.length < 10) {
-        throw "section three title length should be min 10 characters long";
-      }
+      // if (section4.title.length < 10) {
+      //   throw "section three title length should be min 10 characters long";
+      // }
 
-      if (section4.title.length > 25) {
-        throw "section three title length should be max 25 characters long";
-      }
+      // if (section4.title.length > 25) {
+      //   throw "section three title length should be max 25 characters long";
+      // }
 
       if (!section4.video && !section4.ImagePreview) {
         throw "Please select section three video";

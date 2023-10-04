@@ -193,34 +193,34 @@ function About() {
       if(!section1.title){
         throw "Please enter section one title"
       }
-      if(section1.title.length<10){
-        throw "Section one title length should be min 10 characters long"
-      }
+      // if(section1.title.length<10){
+      //   throw "Section one title length should be min 10 characters long"
+      // }
       
-      if(section1.title.length>40){
-        throw "Section one title length should be max 40 characters long"
-      }
+      // if(section1.title.length>40){
+      //   throw "Section one title length should be max 40 characters long"
+      // }
       if(!section1.description){
         throw "Please enter banner caption"
       }
-      if(section1.description.length<10){
-        throw "Section one description length should be min 10 characters long"
-      }
-      if(section1.description.length>250){
-        throw "Section one description length should be max 250 characters long"
-      }
+      // if(section1.description.length<10){
+      //   throw "Section one description length should be min 10 characters long"
+      // }
+      // if(section1.description.length>250){
+      //   throw "Section one description length should be max 250 characters long"
+      // }
       if(!section1.image && !ImagePreview){
         throw "Please select banner image"
       }
 
-      console.log("aaaaaaaaaaaaaaa",imageFile)
+      // console.log("aaaaaaaaaaaaaaa",imageFile)
       if(ImagePreview){
        
         const formData = new FormData()
         formData.append('file', imageFile)
 
         dispatch(uploadMedia(formData, image=>{
-          console.log("image==============",image)
+          // console.log("image==============",image)
           if(image.data && image.data.url){
             let obj = {}
            obj.image = image.data.url
@@ -233,10 +233,10 @@ function About() {
              obj.description = section1.description
             }
 
-            console.log("1=========", {obj})
+            // console.log("1=========", {obj})
             
             dispatch(addAndUpdateAbout({section1:obj}, res=>{
-              console.log("res----------",res)
+              // console.log("res----------",res)
             } ))
           }
         }))
@@ -249,9 +249,9 @@ function About() {
         if(section1.description ){
           section1.description = section1.description
         }
-        console.log("2=========", {section1})
+        // console.log("2=========", {section1})
         dispatch(addAndUpdateAbout({section1}, res=>{
-          console.log("res----------",res)
+          // console.log("res----------",res)
         } ))
       }
 
@@ -279,14 +279,14 @@ function About() {
 
 
   const handleUploadImage=(file,index, cb)=>{
-    console.log("file---------",file, file.name, typeof file)
+    // console.log("file---------",file, file.name, typeof file)
       if(file.name){
         const formData= new FormData()
         formData.append('file', file)
         dispatch(uploadMedia(formData,(data)=>{
           let temp= section2.slice(0)
           temp[index].image= data.data.url
-    console.log("url---------",data)
+    // console.log("url---------",data)
           
           setsection2(temp)
           cb()
@@ -331,22 +331,22 @@ function About() {
       if(!section2[0].title){
         throw "Please enter section 2.1 title"
       }
-      if(section2[0].title.length<10){
-        throw "Section 2.1 title length should be min 10 characters long"
-      }
+      // if(section2[0].title.length<10){
+      //   throw "Section 2.1 title length should be min 10 characters long"
+      // }
       
-      if(section2[0].title.length>40){
-        throw "Section 2.1 title length should be max 40 characters long"
-      }
+      // if(section2[0].title.length>40){
+      //   throw "Section 2.1 title length should be max 40 characters long"
+      // }
       if(!section2[0].description){
         throw "Please enter banner caption"
       }
-      if(section2[0].description.length<10){
-        throw "Section 2.1 description length should be min 10 characters long"
-      }
-      if(section2[0].description.length>250){
-        throw "Section 2.1 description length should be max 250 characters long"
-      }
+      // if(section2[0].description.length<10){
+      //   throw "Section 2.1 description length should be min 10 characters long"
+      // }
+      // if(section2[0].description.length>250){
+      //   throw "Section 2.1 description length should be max 250 characters long"
+      // }
 
       if(!section2[0].image && !section2[0].ImagePreview){
         throw "Please select section 2.1 image"
@@ -356,22 +356,22 @@ function About() {
       if(!section2[1].title){
         throw "Please enter section 2.2 title"
       }
-      if(section2[1].title.length<10){
-        throw "Section 2.2 title length should be min 10 characters long"
-      }
+      // if(section2[1].title.length<10){
+      //   throw "Section 2.2 title length should be min 10 characters long"
+      // }
       
-      if(section2[1].title.length>40){
-        throw "Section 2.2 title length should be max 40 characters long"
-      }
+      // if(section2[1].title.length>40){
+      //   throw "Section 2.2 title length should be max 40 characters long"
+      // }
       if(!section2[1].description){
         throw "Please enter banner caption"
       }
-      if(section2[1].description.length<10){
-        throw "Section 2.2 description length should be min 10 characters long"
-      }
-      if(section2[1].description.length>250){
-        throw "Section 2.2 description length should be max 250 characters long"
-      }
+      // if(section2[1].description.length<10){
+      //   throw "Section 2.2 description length should be min 10 characters long"
+      // }
+      // if(section2[1].description.length>250){
+      //   throw "Section 2.2 description length should be max 250 characters long"
+      // }
 
       if(!section2[1].image && !section2[1].ImagePreview){
         throw "Please select section 2.2 image"
@@ -381,22 +381,22 @@ function About() {
       if(!section2[2].title){
         throw "Please enter section 2.3 title"
       }
-      if(section2[2].title.length<10){
-        throw "Section 2.3 title length should be min 10 characters long"
-      }
+      // if(section2[2].title.length<10){
+      //   throw "Section 2.3 title length should be min 10 characters long"
+      // }
       
-      if(section2[2].title.length>40){
-        throw "Section 2.3 title length should be max 40 characters long"
-      }
+      // if(section2[2].title.length>40){
+      //   throw "Section 2.3 title length should be max 40 characters long"
+      // }
       if(!section2[2].description){
         throw "Please enter banner caption"
       }
-      if(section2[2].description.length<10){
-        throw "Section 2.3 description length should be min 10 characters long"
-      }
-      if(section2[2].description.length>250){
-        throw "Section 2.3 description length should be max 250 characters long"
-      }
+      // if(section2[2].description.length<10){
+      //   throw "Section 2.3 description length should be min 10 characters long"
+      // }
+      // if(section2[2].description.length>250){
+      //   throw "Section 2.3 description length should be max 250 characters long"
+      // }
 
       if(!section2[2].image && !section2[2].ImagePreview){
         throw "Please select section 2.3 image"
@@ -421,43 +421,43 @@ function About() {
       if(!section3[0].title){
         throw "Please enter section 3 title"
       }
-      if(section3[0].title.length<3){
-        throw "section 3.1 title length should be min 3 characters long"
-      }
+      // if(section3[0].title.length<3){
+      //   throw "section 3.1 title length should be min 3 characters long"
+      // }
       
-      if(section3[0].title.length>25){
-        throw "section 3.1 title length should be max 25 characters long"
-      }
+      // if(section3[0].title.length>25){
+      //   throw "section 3.1 title length should be max 25 characters long"
+      // }
       if(!section3[0].description){
         throw "Please enter section 3.1 caption"
       }
-      if(section3[0].description.length<3){
-        throw "section 3.1 caption length should be min 3 characters long"
-      }
-      if(section3[0].description.length>300){
-        throw "section 3.1 caption length should be max 300 characters long"
-      }
+      // if(section3[0].description.length<3){
+      //   throw "section 3.1 caption length should be min 3 characters long"
+      // }
+      // if(section3[0].description.length>300){
+      //   throw "section 3.1 caption length should be max 300 characters long"
+      // }
 
       //section 3.1
       if(!section3[1].title){
         throw "Please enter section 3.2 title"
       }
-      if(section3[1].title.length<3){
-        throw "section 3.2 title length should be min 3 characters long"
-      }
+      // if(section3[1].title.length<3){
+      //   throw "section 3.2 title length should be min 3 characters long"
+      // }
       
-      if(section3[1].title.length>25){
-        throw "section 3.2 title length should be max 25 characters long"
-      }
+      // if(section3[1].title.length>25){
+      //   throw "section 3.2 title length should be max 25 characters long"
+      // }
       if(!section3[1].description){
         throw "Please enter section 3.2 caption"
       }
-      if(section3[1].description.length<10){
-        throw "section 3.2 caption length should be min 10 characters long"
-      }
-      if(section3[1].description.length>300){
-        throw "section 3.2 caption length should be max 300 characters long"
-      }
+      // if(section3[1].description.length<10){
+      //   throw "section 3.2 caption length should be min 10 characters long"
+      // }
+      // if(section3[1].description.length>300){
+      //   throw "section 3.2 caption length should be max 300 characters long"
+      // }
     
   
       
@@ -465,26 +465,23 @@ function About() {
       if(!section3[2].title){
         throw "Please enter section 3.3 title"
       }
-      if(section3[2].title.length<3){
-        throw "section 3.3 title length should be min 3 characters long"
-      }
+      // if(section3[2].title.length<3){
+      //   throw "section 3.3 title length should be min 3 characters long"
+      // }
       
-      if(section3[2].title.length>25){
-        throw "section 3.3 title length should be max 25 characters long"
-      }
+      // if(section3[2].title.length>25){
+      //   throw "section 3.3 title length should be max 25 characters long"
+      // }
       if(!section3[2].description){
         throw "Please enter section 3.3 caption"
       }
-      if(section3[2].description.length<10){
-        throw "section 3.3 caption length should be min 10 characters long"
-      }
-      if(section3[2].description.length>300){
-        throw "section 3.3 caption length should be max 300 characters long"
-      }
-    
-  
-      
-        
+      // if(section3[2].description.length<10){
+      //   throw "section 3.3 caption length should be min 10 characters long"
+      // }
+      // if(section3[2].description.length>300){
+      //   throw "section 3.3 caption length should be max 300 characters long"
+      // }
+         
         dispatch(addAndUpdateAbout({section3:section3}, res=>{
         } ))
       
@@ -507,7 +504,6 @@ function About() {
 
 
    await  dispatch (uploadMedia(formData,( response) => {
-      console.log(response.data);
       if(response.data && response.data.url){
       
 
@@ -518,7 +514,6 @@ function About() {
 
         let temp = justUploadedImages
         temp.push(response.data.url)
-        console.log("temp-----------------",temp, response.data.url, justUploadedImages)
         setjustUploadedImages(temp)
       }else{
         toast.error('Network Error')
@@ -594,10 +589,8 @@ function About() {
 
   const submitSection5Images=()=>{
     dispatch(addAndUpdateAbout({section5:{image:justUploadedImages}},(res)=>{
-      console.log("res========",res)
       handleDeleteAll()
     }))
-    console.log(justUploadedImages)
   }
   return (
     <div className="w-[64vw]">
@@ -660,9 +653,7 @@ function About() {
             <Form1 data={section3[2]} showMedia={false} setData={val=>handleSection3Change(val,2 )} idkey={"card3.3"} />
 
           </AccordionItemPanel>
-        </AccordionItem>
-    
-      
+        </AccordionItem>   
       </Accordion>
     </div>
   );

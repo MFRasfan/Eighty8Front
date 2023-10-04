@@ -31,8 +31,6 @@ function Contact() {
   useEffect(() => {
     dispatch(getContact(data=>{
       if(data && data.length>0){
-        console.log(data[0])
-
         if(data[0].section1){
           setsection1(data[0].section1)
         }
@@ -50,27 +48,26 @@ function Contact() {
       if(!section1.title){
         throw "Please enter section one title"
       }
-      if(section1.title.length<10){
-        throw "Section one title length should be min 10 characters long"
-      }
+      // if(section1.title.length<10){
+      //   throw "Section one title length should be min 10 characters long"
+      // }
       
-      if(section1.title.length>40){
-        throw "Section one title length should be max 40 characters long"
-      }
+      // if(section1.title.length>40){
+      //   throw "Section one title length should be max 40 characters long"
+      // }
       if(!section1.description){
         throw "Please enter banner caption"
       }
-      if(section1.description.length<10){
-        throw "Section one description length should be min 10 characters long"
-      }
-      if(section1.description.length>250){
-        throw "Section one description length should be max 250 characters long"
-      }
+      // if(section1.description.length<10){
+      //   throw "Section one description length should be min 10 characters long"
+      // }
+      // if(section1.description.length>250){
+      //   throw "Section one description length should be max 250 characters long"
+      // }
       if(!section1.image && !section1.ImagePreview){
         throw "Please select banner image"
       }
 
-      console.log("aaaaaaaaaaaaaaa",imageFile)
       if(section1.ImagePreview){
        
         const formData = new FormData()
@@ -89,8 +86,6 @@ function Contact() {
              obj.description = section1.description
             }
 
-            console.log("1=========", {section1})
-            
             dispatch(addAndUpdateContact({section1:obj}, res=>{
             } ))
           }
@@ -104,9 +99,7 @@ function Contact() {
         if(section1.description ){
           obj.description = section1.description
         }
-        console.log("2=========", {section1})
         dispatch(addAndUpdateContact({section1:obj}, res=>{
-          console.log("res----------",res)
         } ))
       }
 
@@ -131,12 +124,12 @@ function Contact() {
       if(!Boolean(section2.phonePrimary) ){
           throw "Please enter primary phone number"
       }
-      if(section2.phonePrimary.length!==14 ){
-        throw "Primary phone length must be 14 characters long"
-        }
-      if( section2.phoneSecondary && section2.phoneSecondary.length<14 ){
-          throw "Secondary phone length must be 14 characters long"
-      }
+      // if(section2.phonePrimary.length!==14 ){
+      //   throw "Primary phone length must be 14 characters long"
+      //   }
+      // if( section2.phoneSecondary && section2.phoneSecondary.length<14 ){
+      //     throw "Secondary phone length must be 14 characters long"
+      // }
       if(!section2.emailPrimary ){
         throw "Please enter primary email"
         }

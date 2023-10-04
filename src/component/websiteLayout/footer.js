@@ -4,6 +4,7 @@ import {FaFacebookF, FaTwitter, FaLinkedin} from 'react-icons/fa'
 import{FiInstagram} from 'react-icons/fi'
 import{GrTictok} from 'react-icons/gr'
 import AutoTraderBestPriced2021 from '../../assets/AutoTraderBestPriced2021.svg'
+import Logo from "../../assets/logo.svg";
 import { useDispatch, useSelector } from 'react-redux'
 import { getContact} from '../../store/features/webcontent/webContentService';
 
@@ -31,6 +32,10 @@ const Footer = () => {
 
    
       <div className="md:h-[80vh] bg-white pt-20 grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className='flex -mt-28 items-center justify-center'>
+              <img src={Logo} className="w-[250px] h-[250px]"/>
+            </div>
+        
           <div className='px-20 flex flex-col space-y-5'>
               <p className='text-3xl text-gray-700 font-bold'>EXPLORE COMPANY</p>
               <Link to="/"> <p className='text-gray-700 hover:text-primary hover:font-semibold duration-300 ease-in-out '>Home </p> </Link>
@@ -63,13 +68,11 @@ const Footer = () => {
                     </a>
                   </div>
             </div>
-            <div className='flex mt-20 items-center justify-center'>
-              <img src={AutoTraderBestPriced2021} className="w-[250px] h-[250px]"/>
-            </div>
+           
         </div>
         <div className='h-[15vh]'></div>
         <div className='bg-gray-100 flex flex-col  h-[140px] items-center justify-center space-y-5'>
-          <p className='w-[70%] text-center text-gray-700'>© 2023 Eighty 8 Alpha Autos Technologies Inc. All Rights Reserved.</p>
+          <p className='w-[70%] text-center text-gray-700'>© 2023 Eighty8 Alpha Autos All Rights Reserved.</p>
           <p className='text-gray-700 mt-4'>
             <Link to="/terms-and-conditions"><span className='hover:text-primary hover:underline duration-300 ease-in-out'>Term & Conditions</span></Link> |
             <Link to="/privacy-policy"> <span className='hover:text-primary hover:underline duration-300 ease-in-out'>Privacy Policy</span></Link> |

@@ -20,7 +20,7 @@ const FanVideo = ({data={}}) => {
           url={data.video?imageURL+data.video:'https://www.youtube.com/watch?v=ysz5S6PUM-U'} />
       
        <BiPlay size={100} onClick={()=>setplay(!play)} className="-mt-72 mb-40" color={play?'transparent': COLORS.white}/>
-      <Reviews/>
+      {/* <Reviews/> */}
       <div className='h-[36vh]'></div>
     </div>
   )

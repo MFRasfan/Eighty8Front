@@ -14,12 +14,12 @@ const PrivacyPolicy = () => {
       </p>
 
       <p className='text-gray-700'>
-      Your privacy is important to Eighty 8 Alpha Automotive and we are committed to being transparent about how and why we collect, use, and disclose information about you. This policy is designed to help you understand:
+      Your privacy is important to Eighty8 Alpha Automotive and we are committed to being transparent about how and why we collect, use, and disclose information about you. This policy is designed to help you understand:
     </p>
 
 
     <ol className='text-gray-700'>
-      <li>•	 The policy applies to personal information collected through the Eighty 8 Alpha Automotive website and mobile applications. </li>
+      <li>•	 The policy applies to personal information collected through the Eighty8 Alpha Automotive website and mobile applications. </li>
       <li>•	Personal information collected includes name, email address, postal address, phone number, and usage information such as IP address and browser type.</li>
       <li>•	The information is used to provide and maintain services, notify users about changes, provide customer support, analyze usage, and comply with laws and regulations. </li>
       <li>•	Information may be shared with third-party service providers and affiliates for the stated purposes.</li>
@@ -31,7 +31,7 @@ const PrivacyPolicy = () => {
     </ol>
 
     <p className='text-gray-700'>
-    At Eighty 8 Alpha Automotive Inc. (“Eighty 8 Alpha Automotive”, “we”, “us” or “our”), we respect your privacy and are committed to protecting the personal information that you share with us. This Privacy Policy (the “Policy”) explains how we collect, use, and disclose your personal information, and your rights with respect to that information.
+    At Eighty8 Alpha Automotive Inc. (“Eighty8 Alpha Automotive”, “we”, “us” or “our”), we respect your privacy and are committed to protecting the personal information that you share with us. This Privacy Policy (the “Policy”) explains how we collect, use, and disclose your personal information, and your rights with respect to that information.
     </p>
 
     <p className='text-gray-700'>
@@ -74,15 +74,15 @@ const PrivacyPolicy = () => {
     <p className='text-gray-700'> We may also use your information for other purposes with your consent.</p>
     <p className='text-gray-700 font-semibold text-2xl'>2.1 WHEN YOU VISIT OUR WEBSITE (COOKIES):</p>
     <p className='text-gray-700'>
-    At Eighty 8 Alpha Automotive Inc., we strive to make your experience on our website easy and meaningful. As you interact with our website, our web server and any third parties we may engage with to provide you our services may send a cookie to your computer. Cookies are files that web browsers store on your computer and are used to tell us whether customers and visitors have visited our website before. If you click on a link to a third-party website, such third party may also transmit cookies to you.
+    At Eighty8 Alpha Automotive Inc., we strive to make your experience on our website easy and meaningful. As you interact with our website, our web server and any third parties we may engage with to provide you our services may send a cookie to your computer. Cookies are files that web browsers store on your computer and are used to tell us whether customers and visitors have visited our website before. If you click on a link to a third-party website, such third party may also transmit cookies to you.
     </p>
 
     <p className='text-gray-700'>
-    Please note that standing alone, cookies do not identify you personally. They merely recognize your browser. Unless you choose to identify yourself to us by responding to a promotional offer, opening an account, or registering for a free trial, you will remain anonymous to Eighty 8 Alpha Automotive Inc. Cookies come in two flavors: session and persistent-based. Session cookies exist only during an online session. They disappear from your computer when you close your browser software or turn off your computer. Notwithstanding the foregoing, we also use a type of storage called session storage that disappears whenever you close your browsing window or navigate away from our website. Persistent cookies remain on your computer after you've closed your browser or turned off your computer. They include such information as a unique identifier for your browser.
+    Please note that standing alone, cookies do not identify you personally. They merely recognize your browser. Unless you choose to identify yourself to us by responding to a promotional offer, opening an account, or registering for a free trial, you will remain anonymous to Eighty8 Alpha Automotive Inc. Cookies come in two flavors: session and persistent-based. Session cookies exist only during an online session. They disappear from your computer when you close your browser software or turn off your computer. Notwithstanding the foregoing, we also use a type of storage called session storage that disappears whenever you close your browsing window or navigate away from our website. Persistent cookies remain on your computer after you've closed your browser or turned off your computer. They include such information as a unique identifier for your browser.
     </p>
 
     <p className='text-gray-700'>
-    At Eighty 8 Alpha Automotive Inc., we use session cookies containing information to allow the system to uniquely identify you while you are logged in. This information allows us to process your online transactions and requests. Session cookies help us make sure you are who you say you are after you've logged in and are required in order to use our application. We also use persistent cookies that are used to identify the fact that you are a customer or prior website visitor (whatever the case may be), this may include Personal Information, as defined in our privacy policy, including your first and last name. We take special care to ensure the security and confidentiality of the information stored in persistent cookies. To view the persistent cookies, you may be required to successfully authenticate your identity by entering your Eighty 8 Alpha Automotive Inc. login credentials or via a third-party site, like Facebook or Google. Users who disable their web browsers' ability to accept cookies will be able to browse our website but will not be able to successfully use our services.
+    At Eighty8 Alpha Automotive Inc., we use session cookies containing information to allow the system to uniquely identify you while you are logged in. This information allows us to process your online transactions and requests. Session cookies help us make sure you are who you say you are after you've logged in and are required in order to use our application. We also use persistent cookies that are used to identify the fact that you are a customer or prior website visitor (whatever the case may be), this may include Personal Information, as defined in our privacy policy, including your first and last name. We take special care to ensure the security and confidentiality of the information stored in persistent cookies. To view the persistent cookies, you may be required to successfully authenticate your identity by entering your Eighty8 Alpha Automotive Inc. login credentials or via a third-party site, like Facebook or Google. Users who disable their web browsers' ability to accept cookies will be able to browse our website but will not be able to successfully use our services.
     </p>
 
     <p className='text-gray-700 font-semibold text-3xl'>3. Disclosure of Your Information</p>
@@ -163,7 +163,7 @@ const PrivacyPolicy = () => {
     </p>
 
     <p className='text-gray-700'>
-    Eighty 8 Alpha Automotive Inc.
+    Eighty8 Alpha Automotive Inc.
     </p>
     <p className='text-gray-700'>
     Attn: Privacy Officer

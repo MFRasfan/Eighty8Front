@@ -9,7 +9,7 @@ const WhoWeAre = ({data}) => {
   if(data){
      
   let obj={
-    title:"WHO WE ARE",
+    title:"MAINTENANCE AND SERVICE",
     heading:data.title||"",
     description:data.description ||"",
     image: imageURL+data.image ||"",

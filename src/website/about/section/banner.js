@@ -5,7 +5,7 @@ import { imageURL } from '../../../store/api'
 const Banner = ({data}) => {
   
   let obj={
-    title:"ABOUT US",
+    title:"ABOUT",
     heading:data.title||"",
     description:data.description||"",
     image: imageURL+data.image||"",
