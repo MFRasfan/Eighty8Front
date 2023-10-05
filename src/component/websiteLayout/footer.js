@@ -31,8 +31,8 @@ const Footer = () => {
     <div>
 
    
-      <div className="md:h-[80vh] bg-white pt-20 grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className='flex -mt-28 items-center justify-center'>
+      <div className=" md:h-[80vh] bg-white pt-20 grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className='flex -mt-28 mb-10 items-center justify-center'>
               <img src={Logo} className="w-[250px] h-[250px]"/>
             </div>
         
@@ -48,10 +48,12 @@ const Footer = () => {
 
             <div className='px-20 flex flex-col space-y-5'>
                   <p className='text-3xl text-gray-700 font-bold'>Contact Us</p>
-                  <Link to="/"> <p className='text-gray-700 hover:text-primary hover:font-semibold duration-300 ease-in-out '>Chat with us </p> </Link>
-                  <Link to="/aboutus"> <p className='text-gray-700 hover:text-primary hover:font-semibold duration-300 ease-in-out '>Call us at {contactDetails.phoneSecondary}</p> </Link>
-                  <Link to="/contactus"> <p className='text-gray-700 hover:text-primary hover:font-semibold duration-300 ease-in-out '>Email us at {contactDetails.emailSecondary} </p> </Link>
-                  <Link to="/"> <p className='text-gray-700 hover:text-primary hover:font-semibold duration-300 ease-in-out '>Locations </p> </Link>
+                  <a  href={contactDetails.phoneSecondary?`tel:${contactDetails.phoneSecondary}`:"#"}>
+                    <p className='text-gray-700 hover:text-primary hover:font-semibold duration-300 ease-in-out '>Call us at {contactDetails.phoneSecondary}</p>
+                    </a>
+                    <a  href={contactDetails.emailSecondary?`mailto:${contactDetails.emailSecondary}`:"#"}>
+              <p className='text-gray-700 hover:text-primary hover:font-semibold duration-300 ease-in-out '>Email us at {contactDetails.emailSecondary} </p>
+              </a>
 
                   <div className='flex pt-5 space-x-4'>
                     <a target={"_blank"} href={contactDetails.fb||"/"}>
@@ -72,7 +74,7 @@ const Footer = () => {
         </div>
         <div className='h-[15vh]'></div>
         <div className='bg-gray-100 flex flex-col  h-[140px] items-center justify-center space-y-5'>
-          <p className='w-[70%] text-center text-gray-700'>© 2023 Eighty8 Alpha Autos All Rights Reserved.</p>
+          <p className='w-[70%] text-center text-gray-700'>© 2023 Eighty8 Alpha All Rights Reserved.</p>
           <p className='text-gray-700 mt-4'>
             <Link to="/terms-and-conditions"><span className='hover:text-primary hover:underline duration-300 ease-in-out'>Term & Conditions</span></Link> |
             <Link to="/privacy-policy"> <span className='hover:text-primary hover:underline duration-300 ease-in-out'>Privacy Policy</span></Link> |

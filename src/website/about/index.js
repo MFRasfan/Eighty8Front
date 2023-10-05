@@ -56,7 +56,7 @@ const AboutUs = () => {
   return (
     <WebsiteLayout>
         <Banner data={bannerDetails}/>
-        <Statistics data={statistics}/>
+        {!!statistics.length&&<Statistics data={statistics}/>}
         <OurStory data={ourStory}/>
         <WhoWeAre data={whoWeAre}/>
         <WhatWedo data={whatWedo}/>
@@ -65,6 +65,7 @@ const AboutUs = () => {
         {/* <OurLeaders/>
         <OurInvestors/>
         <LearnMore/> */}
+        <div className='mt-24'/>
     </WebsiteLayout>
   )
 }

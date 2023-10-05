@@ -43,7 +43,7 @@ const Home = () => {
   
       <CategoryContainer />
       <BrowseByCategory />
-    
+      <div className='mt-24'/>
     </WebsiteLayout>
   );
 };
