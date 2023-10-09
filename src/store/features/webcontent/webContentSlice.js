@@ -16,19 +16,15 @@ export const webContentSlice= createSlice({
             state.loading= action.payload
         },
         setHomeContent:(state, action)=>{
-            console.log("Action",action)
             state.home= action.payload[0]
         },
         setAboutContent:(state, action)=>{
-            console.log("Action",action)
             state.about= action.payload
         },
         setContactDetailsContent:(state, action)=>{
-            console.log("Action",action)
             state.contactDetails= action.payload
         },
         setFAQContent:(state, action)=>{
-            console.log("Action",action)
             state.faq= action.payload
         },
     }

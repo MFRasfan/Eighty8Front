@@ -43,7 +43,6 @@ const Customer = () => {
   const getAlluserHandler = () => {
     dispatch(
       getUserList({ role: "Walk-In", page: 1, limit: 50 }, (data) => {
-        console.log(data)
         setuserList(data)
       }
       )

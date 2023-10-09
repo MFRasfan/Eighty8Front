@@ -11,7 +11,6 @@ export const createInquiry=(data,cb)=>async dispatch=>{
             url: url.inquiry ,
             data,
           });
-          console.log(response)
           if(response.message){
               toast.success(response.message)
               cb()  
@@ -42,16 +41,13 @@ export const getInquiryList=({role, page=1,limit=10},cb)=> async dispatch=>{
         _url = `${url.inquiry}?page=${page}&limit=${limit}`
 
        }
-        
-       console.log(_url)
+   
         
         const response = await makeRequest({
             method: "get",
             url: _url,
             headers: { Authorization: `Bearer ${accessToken}` },
-          });
-        console.log(response)
-       
+          }); 
             dispatch(setInquiryList(response))
         
             dispatch(setLoading(false))
@@ -67,10 +63,8 @@ export const getInquiryList=({role, page=1,limit=10},cb)=> async dispatch=>{
 export const updateInquiryById = (id, body,cb) => async (dispatch) => {
     try {
   
-      console.log(id)
         dispatch(setLoading(true));
         const accessToken= await store.getState().auth.accessToken
-        console.log(body)
         const response = await makeRequest({ 
             method:'put',
               url:`${url.inquiry}?id=${id}`, 
@@ -123,8 +117,6 @@ export const updateInquiryById = (id, body,cb) => async (dispatch) => {
           url:`${_url}`, 
           headers: { Authorization: `Bearer ${accessToken}` }
         });
-        
-        console.log("_url, response--------------", _url, response )
         cb(response)
       } catch (error) {
         toast.error(error.error)
@@ -138,7 +130,6 @@ export const updateInquiryById = (id, body,cb) => async (dispatch) => {
         dispatch(setLoading(true));
         let _url=url.report
         const {from, to,assignee}=info
-        console.log("2",info)
       
         if(info!==null){
         let firstFilter=true
@@ -156,7 +147,6 @@ export const updateInquiryById = (id, body,cb) => async (dispatch) => {
         }
       }
 
-        console.log(_url)
         const accessToken= await store.getState().auth.accessToken
 
         const response = await makeRequest({ 

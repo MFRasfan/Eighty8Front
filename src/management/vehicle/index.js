@@ -22,23 +22,6 @@ const Vehicle = () => {
   const {vehicles}= useSelector(state=>state.vehicles)
   let [vehicleList, setvehicleList] = useState([])
 
-
-  
-// const [roleState, setroleState] = useState('')
-//   const { roles } = useSelector(({ roles }) => ({
-//     roles:roles.roles
-//    }));
-
- 
-
-// console.log("roles.roles==========",roles)
-  // useEffect(() => {
-  //   if(!roles.length){
-  //     dispatch(getAllRoles())
-  //   }
-  // }, [roles.roles&& roles.roles.length])
-
-
   useEffect(() => {
    getAllVehiclesHandler()
   }, [])
@@ -46,7 +29,6 @@ const Vehicle = () => {
   useEffect(() => {
     setvehicleList(vehicles)
    }, [vehicles])
-   console.log("vehiclesss",vehicles)
 
   const getAllVehiclesHandler=()=>{
     dispatch(getAllVehicles(data =>setvehicleList(data)))
@@ -65,9 +47,7 @@ const Vehicle = () => {
  
 
 const handleStatusUpdate=(item,index)=>{
-  // const temp = vehicleList.slice(0)
-  // temp[index].status = item.status==="active"?"inactive":"active"
-  // setvehicleList(temp)
+  
   dispatch(updateVehicleDetails(item._id,{
     status: item.status==="active"?"inactive":"active"
   },()=>{
@@ -137,7 +117,6 @@ const defaultView=()=>{
     tdcells={renderRoleTableBody}
   
     />
-    {console.log(vehicleList)}
     </>
   )
 }

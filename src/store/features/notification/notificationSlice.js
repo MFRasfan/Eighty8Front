@@ -13,7 +13,6 @@ export const notificationlice= createSlice({
             state.loading= action.payload
         },
         setNotification:(state, action)=>{
-            console.log("Acrion",action)
             state.notification= action.payload
            
         }

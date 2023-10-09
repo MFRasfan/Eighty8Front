@@ -282,7 +282,6 @@ const CategoryModal = ({filterList, setfilterList, reset}) => {
              optionList={ showAllBrandList? BRAND_LIST_DATA: BRAND_LIST_DATA.slice(0,11) } 
              seletedItemList={selectedBrand} 
              setselectedListItems={val=>{
-              console.log(val)
               handleFilter('brands',val)
               setselectedBrand(val)}}
              />
@@ -329,9 +328,7 @@ const CategoryModal = ({filterList, setfilterList, reset}) => {
               optionList={ showAllStyleList? STYLE_DATA: STYLE_DATA.slice(0,11) } 
               seletedItemList={selectedStyle }
               setselectedListItems={val=>{
-                console.log(val)
                 handleFilter('style',val)
-
                 setselectedStyle(val)}}
               />
               
@@ -372,9 +369,7 @@ const CategoryModal = ({filterList, setfilterList, reset}) => {
             optionList={  BODY_TYPE_DATA } 
             seletedItemList={selectedBodyTypes }
             setselectedListItems={val=>{
-              console.log(val)
               handleFilter('bodyType',val)
-
               setselectedBodyTypes(val)}}
             />
             
@@ -412,7 +407,6 @@ const CategoryModal = ({filterList, setfilterList, reset}) => {
       optionList={  EXTERIOR_COLOR} 
       seletedItemList={selectedColors }
       setselectedListItems={val=>{
-        console.log(val)
         setselectedColors(val)}}
       />
       
@@ -451,7 +445,6 @@ const CategoryModal = ({filterList, setfilterList, reset}) => {
       optionList={  SEATS } 
       seletedItemList={selectedSeats }
       setselectedListItems={val=>{
-        console.log(val)
         handleFilter('seats',val)
 
         setselectedSeats(val)}}
@@ -491,7 +484,6 @@ const CategoryModal = ({filterList, setfilterList, reset}) => {
       optionList={  TRANSMISSIONS } 
       seletedItemList={selectedTransmission }
       setselectedListItems={val=>{
-        console.log(val)
         handleFilter('transmission',val)
 
         setselectedTransmission(val)}}
@@ -531,7 +523,6 @@ const CategoryModal = ({filterList, setfilterList, reset}) => {
       optionList={  FUEL_TYPE } 
       seletedItemList={selectedFuelType }
       setselectedListItems={val=>{
-        console.log(val)
         handleFilter('fuelType',val)
 
         setselectedFuelType(val)}}
@@ -570,7 +561,6 @@ const CategoryModal = ({filterList, setfilterList, reset}) => {
       optionList={  DRIVE_TRAINS} 
       seletedItemList={selectedDriveTrain }
       setselectedListItems={val=>{
-        console.log(val)
         handleFilter('driveTrain',val)
 
         setselectedDriveTrain(val)}}
@@ -610,7 +600,6 @@ const CategoryModal = ({filterList, setfilterList, reset}) => {
 
       seletedItemList={selectedCylinders }
       setselectedListItems={val=>{
-        console.log(val)
         setselectedCylinders(val)}}
       />
       

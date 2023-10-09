@@ -11,14 +11,12 @@ const Search = ({setsearchResultList , setshowSearch}) => {
   const location = useLocation()
 
   useEffect(() => {
-    console.log(location)
     if(location.search){
       // let query= location.search.replace(/[?%20]/g, " ").trim("");
       let query= decodeURIComponent(location.search.replace("?", ""))
       setshowSearch(true)
       setsearchText(query)
       dispatch(searchVehicles(query, data=>{
-        console.log("SEARCH BROWSE RESULT", data)
         if(data && data.length>0){
           setsearchResultList(data)
         }

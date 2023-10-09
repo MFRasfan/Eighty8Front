@@ -16,7 +16,6 @@ const Footer = () => {
   useEffect(() => {
     if (contact.length === 0) {
       dispatch(getContact((data) =>{
-        console.log(data)
         if(data[0] ){
           setcontactDetails(data[0]) 
           }

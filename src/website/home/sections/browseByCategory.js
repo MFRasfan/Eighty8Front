@@ -28,7 +28,7 @@ export const CategoryContainer = ({ item, index }) => {
         const year = filteredYears[i];
         for (let j = year.makes.length - 1; j >= 0; j--) {
           const make = year.makes[j];
-          console.log(make);
+       
           const makeCars = make.models.slice(0, yearLimit).map((model) => ({
             year: year.id,
             make: make.models[0].name,

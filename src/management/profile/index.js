@@ -16,14 +16,12 @@ import { getMyProfileData } from '../../store/features/auth/authService';
 
 
 const Profile = () => {
-  const navigation = useNavigate();
   const [input, setinput] = useState({});
-  const [showPassword, setshowPassword] = useState(false)
   const dispatch= useDispatch()
   const [ImagePreview, setImagePreview] = useState("")
   const [imageFile, setimageFile] = useState({})
   const user= useSelector(state=>state.auth.user)
-  console.log(user)
+
 
   const onInputChange = (e) => {
     setinput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -53,35 +51,16 @@ const Profile = () => {
           const formData= new FormData()
           formData.append('file',imageFile)
           dispatch (uploadMedia(formData,( response) => {
-            console.log(response.data);
             if(response.data && response.data.url){
                 obj.image= response.data.url
-                console.log("OBJ------", obj)
-                console.log(user)
                 dispatch(updateUserById(user._id, obj,()=>{
                  dispatch(getMyProfileData(user._id, data=>setinput(data)))
                 }))
             }}))    
         }else{
-          console.log("OBJ------", obj)
-          console.log(user)
 
           dispatch(updateUserById(user._id, obj,()=>{
             dispatch(getMyProfileData(user._id, data=>setinput(data)))
-
-            // setinput({
-            //   firstName:"",
-            //   lastName:"",
-            //   email:"",
-            //   phone:"",
-            //   role:"",
-            //   confirmPassword:"",
-            //   password:""
-    
-            // })
-            // setImagePreview("")
-            // setimageFile({})
-            // toggleForm()
           }))
         }
   

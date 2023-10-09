@@ -20,10 +20,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     if (user && user.role) {
-     console.log(user.role.role)
       setrole(user.role.role);
-    
-
     }
   }, [user]);
 

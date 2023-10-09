@@ -21,7 +21,6 @@ const Contact = () => {
   useEffect(() => {
     if (contact.length === 0) {
       dispatch(getContact((data) =>{
-        console.log(data)
         if(data[0] ){
           setcontactDetails(data[0])
             if(data[0].section1){
@@ -58,19 +57,12 @@ const Contact = () => {
     }
   }, [dispatch, contact]);
 
-  console.log('contactDetails-----------', contactBannerDetails );
-
+  
   
   return (
-    <WebsiteLayout>
-        {/* <Banner/>
-        <ContactForm/>
-        <FAQ/>
-        <Location/> */}
+    <WebsiteLayout>   
         <AboutCard data={contactBannerDetails}/>
          <InquiryForm/>
-        {/* 
-         */}
     </WebsiteLayout>
   )
 }

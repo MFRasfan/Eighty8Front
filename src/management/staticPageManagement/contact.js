@@ -99,6 +99,7 @@ function Contact() {
         if(section1.description ){
           obj.description = section1.description
         }
+        obj.image = section1.image
         dispatch(addAndUpdateContact({section1:obj}, res=>{
         } ))
       }
@@ -119,7 +120,6 @@ function Contact() {
     setsection2({...section2, [name]:value})
   }
   const submitSection2=()=>{
-    console.log(section2)
     try {
       if(!Boolean(section2.phonePrimary) ){
           throw "Please enter primary phone number"

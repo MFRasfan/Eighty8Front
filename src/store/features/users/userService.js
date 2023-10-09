@@ -41,7 +41,6 @@ export const getUserList=({role, page=1,limit=10},cb)=> async dispatch=>{
             url: _url,
             headers: { Authorization: `Bearer ${accessToken}` },
           });
-        console.log(response)
         if(role==="user"){
            dispatch(setUserList(response))
         }else{
@@ -51,7 +50,6 @@ export const getUserList=({role, page=1,limit=10},cb)=> async dispatch=>{
             cb && cb(response)
 
     }catch(err){
-        console.log(err)
         dispatch(setLoading(false))
         toast.error(err.message)
     }

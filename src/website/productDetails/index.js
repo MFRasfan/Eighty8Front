@@ -21,10 +21,9 @@ const ProductDetails = () => {
   }, [])
   
   const handleClick = () => {
-    console.log(11)
     sectionRef.current.scrollIntoView({ behavior: 'smooth' });
   };
-  const {details}= vehicleDetails
+  
   return (
     <WebsiteLayout>
      <div>
@@ -33,9 +32,7 @@ const ProductDetails = () => {
        <ProductDescription goToInquiry={handleClick} details={vehicleDetails.details||{}}/>
        </div>
 
-        {/* <InspectionPoints/> */}
         <InquiryForm id="inquiryform" reference={sectionRef} vehicleid={vehicleDetails._id}/>
-        {/* <RecommendedProducts/> */}
      </div>
     </WebsiteLayout>
   )

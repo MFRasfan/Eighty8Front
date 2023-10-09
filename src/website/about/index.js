@@ -51,7 +51,7 @@ const AboutUs = () => {
       }
   }
 
-  // console.log("sdasdasadasdadas", about ,aboutDetails)
+
   
   return (
     <WebsiteLayout>

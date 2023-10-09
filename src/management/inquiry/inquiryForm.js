@@ -104,14 +104,11 @@ const InquiryForm = ({ toggleForm, data }) => {
     }
 
 
-    console.log(staffList)
-
     const onInputChange = (e) => {
         setinput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     };
 
     const updateStatus=(val)=>{
-        console.log(val, info, data)
         dispatch(updateInquiryById(data._id,{status:val.value}, ()=>{
             dispatch(getInquiryById(data._id,res=>{
                 if(res.data){
@@ -132,7 +129,6 @@ const InquiryForm = ({ toggleForm, data }) => {
             let temp = input.messages.slice(0)
             
             temp.push(obj)
-            console.log(info._id, obj)
             dispatch(updateInquiryById(info._id,obj, ()=>{
                 
                 toast.success('your message has sent successfully')
@@ -145,7 +141,6 @@ const InquiryForm = ({ toggleForm, data }) => {
     }
 
     const updateAssignee=(value)=>{
-        console.log(user._id)
         dispatch(updateInquiryById(info._id,{
             assignee:value.value,
             assignedBy:user._id,
@@ -205,7 +200,6 @@ const InquiryForm = ({ toggleForm, data }) => {
                         name={'status'}
                         style={{ border: 0 }}
                         onChange={val => {
-                            console.log(val)
                             setinput({ ...input, status: val })
                             updateStatus(val)
                         }}
@@ -226,7 +220,6 @@ const InquiryForm = ({ toggleForm, data }) => {
                         name={''}
                         style={{ border: 0 }}
                         onChange={val => {
-                            console.log(val)
                             setinput({ ...input, assignee: val })
                             updateAssignee(val)
                         }}

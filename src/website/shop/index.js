@@ -54,7 +54,6 @@ const Shop = () => {
     }
   }
 
-  console.log("filterList==========",filterList)
 
 
   const handleFilter=()=>{
@@ -62,7 +61,6 @@ const Shop = () => {
       setshowSearch(false)
       let obj={}
     
-    console.log("filterList.priceRange , filterList.priceRange>0",filterList.priceRange , filterList.priceRange>0)
     if(filterList.priceRange && filterList.priceRange.length>0){
       obj["priceRange"]= [Number(filterList.priceRange[0]),Number(filterList.priceRange[1])]
     }
@@ -96,7 +94,6 @@ const Shop = () => {
       obj["bodyType"]= filterList.bodyType
     }
 
-console.log(filterList.driveTrain && filterList.driveTrain.length>0, filterList)
     if(filterList.driveTrain && filterList.driveTrain.length>0){
       obj["drivetrain"]= filterList.driveTrain
     }
@@ -104,7 +101,6 @@ console.log(filterList.driveTrain && filterList.driveTrain.length>0, filterList)
       obj["style"]= filterList.style
     }
       dispatch(getAllFilteredVehicles(obj, data=>{
-        console.log("data.records 123123123132============",filterList, data.records)
         setfilterResults(data.records)}))
     } catch (error) {
       console.log(error)

@@ -51,7 +51,6 @@ const RoleAndPermissionForm = ({showModal, toggleModal, selectedRole}) => {
                 }
             }))
         }
-        // console.log(obj)
     }
 
 

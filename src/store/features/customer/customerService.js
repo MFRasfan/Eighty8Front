@@ -28,33 +28,6 @@ export const createCustomer=(data,cb)=>async dispatch=>{
 }
 
 
-// export const getUserList=({role, page=1,limit=10},cb)=> async dispatch=>{
-//     try{
-//         dispatch(setLoading(true))
-//         const accessToken= await store.getState().auth.accessToken
-       
-//         let _url = `${url.user}?role=${role}&page=${page}&limit=${limit}`
-        
-//         const response = await makeRequest({
-//             method: "get",
-//             url: _url,
-//             headers: { Authorization: `Bearer ${accessToken}` },
-//           });
-//         console.log(response)
-//         if(role==="user"){
-//            dispatch(setUserList(response))
-//         }else{
-//             dispatch(setStaffList(response))
-//         }
-//             dispatch(setLoading(false))
-//             cb && cb(response)
-
-//     }catch(err){
-//         console.log(err)
-//         dispatch(setLoading(false))
-//         toast.error(err.message)
-//     }
-// }
 export const getUserList = ({ role, page = 1, limit = 10 }, cb) => async (dispatch) => {
   try {
     dispatch(setLoading(true));
@@ -67,7 +40,6 @@ export const getUserList = ({ role, page = 1, limit = 10 }, cb) => async (dispat
       url: _url,
       headers: { Authorization: `Bearer ${accessToken}` },
     });
-    console.log(response);
 
     if (role === "Walk-In" || role === "Online" || role === "Guest") {
       dispatch(setUserList(response));
@@ -78,7 +50,6 @@ export const getUserList = ({ role, page = 1, limit = 10 }, cb) => async (dispat
     dispatch(setLoading(false));
     cb && cb(response);
   } catch (err) {
-    console.log(err);
     dispatch(setLoading(false));
     toast.error(err.message);
   }

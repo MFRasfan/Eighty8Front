@@ -12,7 +12,6 @@ export const addAndUpdateHome= (data, cb)=> async dispatch=>{
         data
     })
     const {error,message}=response
-    console.log(message)
     if(message){
         toast.success(message)
     }
@@ -25,7 +24,6 @@ export const addAndUpdateHome= (data, cb)=> async dispatch=>{
 }
 
 export const getHome=(cb)=>async dispatch=>{
-  console.log(111)
   try{
     dispatch(setLoading(true))
     const response= await makeRequest({
@@ -69,7 +67,6 @@ export const addAndUpdateContact= (data, cb)=> async dispatch=>{
 }
 
 export const getContact=(cb)=>async dispatch=>{
- console.log(111)
  try{
    dispatch(setLoading(true))
    const response= await makeRequest({
@@ -78,8 +75,6 @@ export const getContact=(cb)=>async dispatch=>{
    })
   
    if(response){
-
-     console.log(response)
    dispatch(setContactDetailsContent(response))
      cb(response)
    }
@@ -115,14 +110,13 @@ export const addAndUpdateAbout= (data, cb)=> async dispatch=>{
 }
 
 export const getAbout=(cb)=>async dispatch=>{
- console.log(111)
+
  try{
    dispatch(setLoading(true))
    const response= await makeRequest({
      method:'get',
      url:url.about
    })
-   console.log("about response------------",response)
   
    if(response){
 
@@ -161,7 +155,7 @@ export const addFAQ= (data, cb)=> async dispatch=>{
 }
 
 export const getFAQ=(cb)=>async dispatch=>{
- console.log(111)
+
  try{
    dispatch(setLoading(true))
    const response= await makeRequest({
@@ -170,8 +164,6 @@ export const getFAQ=(cb)=>async dispatch=>{
    })
   
    if(response){
-
-     console.log(response)
    dispatch(setFAQContent(response))
      cb(response)
    }
@@ -193,9 +185,9 @@ export const getFAQ=(cb)=>async dispatch=>{
 export const updateFAQ = (id, body,cb)=>async dispatch =>{
   try {
     dispatch(setLoading(true));
-    console.log('url',`${url.faq}?id=${id}`)
+  
     const response = await makeRequest({ method:'put', url:`${url.faq}?id=${id}`,  data:body });
-    console.log(response)
+
     const {error, message}= response
     if(message){
       toast.success(message)
@@ -208,19 +200,3 @@ export const updateFAQ = (id, body,cb)=>async dispatch =>{
   }
 
 }
-
-
-
-
-// export const getVehicleDetailsById = (id,cb)=>async dispatch =>{
-//   try {
-//     dispatch(setLoading(true));
-//     const response = await makeRequest({ method:'get', url:`${url.getVehicleById}?id=${id}`});
-//     cb(response)
-//   } catch (error) {
-//     toast.error(error.error)
-//   } finally {
-//     dispatch(setLoading(false));
-//   }
-
-// }

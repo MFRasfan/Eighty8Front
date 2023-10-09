@@ -42,7 +42,6 @@ const Signup = ({setactiveTab, setemail}) => {
           }
           dispatch(signup(obj, (data)=>{
                     if(data.message){
-                      console.log(data.message)
                         toastComponent.info(data.message)
                         setTimeout(() => {
                               setactiveTab('verificationCode')

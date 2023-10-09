@@ -119,9 +119,7 @@ const VehicleEditForm = ({ toggleForm, data }) => {
         details: details,
         images: [...input.images, ...justUploadedImages]
       }
-      console.log(data._id, obj, 1)
       dispatch(updateVehicleDetails(data._id, obj, () => {
-        console.log(2)
         handleDeleteAll()
         setinput({
           "year": "",
@@ -298,7 +296,6 @@ const VehicleEditForm = ({ toggleForm, data }) => {
   }
 
   const handleSubmitAddNewField=()=>{
-    console.log(addNewFields)
     let temp = input.customFields.slice(0)
     temp.push({
       label:addNewFields.label,

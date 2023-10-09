@@ -96,14 +96,12 @@ const  getAllSalesManHandler = () => {
   const getStatistics=(params)=>{
     let type= params.type
       let temp=[]
-      console.log(params)
       if(type==="viewAll"){
         setinput({...input, assignee:{value:"", label:"Select"}})
         let obj={
           from:moment(fromDate).format('MM/DD/YYYY'),
           to:moment(toDate).add(1, 'months').format('MM/DD/YYYY'), 
         }
-        console.log(obj)
         dispatch(getInquirySalesStatistics(obj,(data)=>{  
           setdownloadData(data)
           temp.push({name:'Total Inquiries',quantity: data.totalInquiries})
@@ -139,101 +137,9 @@ const  getAllSalesManHandler = () => {
     
   }
 
-  // const handleExportToExcel=()=> {
-  //   const data= downloadData;
-  
-  //   const sheetName = "Inquiries Statistics";
-  //   const workbook = XLSX.utils.book_new();
-  //   const worksheet = XLSX.utils.json_to_sheet([
-  //     {
-  //       label: "Total Inquiries",
-  //       value: data.totalInquiries,
-  //     },
-  //     {
-  //       label: "Active Inquiries",
-  //       value: data.activeInquiries,
-  //     },
-  //     {
-  //       label: "Pending Inquiries",
-  //       value: data.pendingInquiries,
-  //     },
-  //     {
-  //       label: "Cancelled Inquiries",
-  //       value: data.cancelledInquiries,
-  //     },
-  //     {
-  //       label: "Completed Inquiries",
-  //       value: data.completedInquiries,
-  //     },
-  //     {
-  //       label: "Closed Inquiries",
-  //       value: data.closedInquiries,
-  //     },
-  //   ]);
-  
-  //   // Set column widths
-  //   const columnWidths = [
-  //     { wpx: 140 },
-  //     { wpx: 140 },
-  //     { wpx: 140 },
-  //     { wpx: 140 },
-  //     { wpx: 140 },
-  //     { wpx: 140 },
-  //   ];
-  //   worksheet["!cols"] = columnWidths;
-  
-  //   // Add heading row
-  //   const headingRow = [
-  //     `Inquiry Statistics Report ${input.assignee ? 'of ' + input.assignee : ''} from ${fromDate} to ${toDate}`,
-  //   ];
-  //   XLSX.utils.sheet_add_aoa(worksheet, [headingRow], { origin: { r: 0, c: 0 } });
-  
-  //   // Add line break
-  //   XLSX.utils.sheet_add_aoa(worksheet, [[]], { origin: { r: 1, c: 0 } });
-  
-  //   // Add statistics headers
-  //   const headers = [
-  //     "Date",
-  //     "Total Inquiries",
-  //     "Active Inquiries",
-  //     "Pending Inquiries",
-  //     "Cancelled Inquiries",
-  //     "Completed Inquiries",
-  //     "Closed Inquiries",
-  //   ];
-  //   XLSX.utils.sheet_add_aoa(worksheet, [headers], { origin: { r: 2, c: 0 } });
-  
-  //   // Add statistics data
-  //   Object.entries(data.statistics).forEach(([date, stats], i) => {
-  //     const row = [
-  //       date,
-  //       stats.total,
-  //       stats.active,
-  //       stats.pending,
-  //       stats.cancelled,
-  //       stats.completed,
-  //       stats.closed,
-  //     ];
-  //     const rowIndex = i + 3; // start at row 3
-  //     XLSX.utils.sheet_add_aoa(worksheet, [row], { origin: { r: rowIndex, c: 0 } });
-  //   });
-  
-  //   // Format header row
-  //   XLSX.utils.sheet_format_row(worksheet, { height: 50, font: { size: 20, bold: true }, alignment: { horizontal: "center", vertical: "center" } }, 0);
-  
-  //   // Format statistics header row
-  //   XLSX.utils.sheet_format_row(worksheet, { font: { bold: true } }, 2);
-  
-  //   XLSX.utils.book_append_sheet(workbook, worksheet, sheetName);
-  
-  //   XLSX.writeFile(workbook, `${sheetName}.xlsx`);
-  // }
-
   const handleExportToExcel=()=>{
     const data = downloadData;
 
-    console.log(data);
-  
     const sheetName = "Inquiries Statistics";
     const workbook = XLSX.utils.book_new();
     let array=[
@@ -333,26 +239,6 @@ const  getAllSalesManHandler = () => {
       { s: { r: 0, c: 0 }, e: { r: headingMergeEndRow, c: headingMergeEndColumn } },
     ];
   
-    // Set heading style
-    // worksheet["!merges"].forEach((merge) => {
-    //   const startCell = XLSX.utils.encode_cell({ r: merge.s.r, c: merge.s.c });
-    //   const endCell = XLSX.utils.encode_cell({ r: merge.e.r, c: merge.e.c });
-    //   const range = `${startCell}:${endCell}`;
-    //   const style = {
-    //     font: {
-    //       bold: true,
-    //       size: 20,
-    //     },
-    //     alignment: {
-    //       horizontal: "center",
-    //       vertical: "center",
-    //       wrapText: true,
-    //     },
-    //   };
-    //   // XLSX.utils.book_set_style(workbook, range, style)
-    // })
-  
-
     XLSX.utils.book_append_sheet(workbook, worksheet, sheetName);
   
     XLSX.writeFile(workbook, `${sheetName}.xlsx`);
@@ -462,16 +348,12 @@ const  getAllSalesManHandler = () => {
    <DashboardLayout>
        <p className={`${formStyle.h1Dashboard} px-2`}>Sales Statistics</p>
         {header()}
-       {/* <div className=' flex flex-wrap space-x-4 '>
-       {inquiryStats.map((item,index)=>cards(item,index))}
-      </div> */}
+     
        <div className='flex  space-x-5' >
         <div className='w-[800px] h-[800px]'>
         <LineChart statistics= {salesYearlyStatistics}/>
         </div>
-        {/* <div  className='w-[24vw]'>
-        <PieChart Data={userGained}/>
-        </div> */}
+       
         </div>
  
 

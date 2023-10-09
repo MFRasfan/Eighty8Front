@@ -37,28 +37,15 @@ const Settings = () => {
       if(input.confirmPassword.length <8) throw "Confirm Password should be atleast 8 character long"
       
       if(input.newPassword !== input.confirmPassword) throw "Password should be same"
-      console.log(user._id)
      
       const obj={
         password:input.newPassword
-      }
-      // dispatch(getAccessToken())
+      } 
       dispatch(updateUserById(user._id, obj, data=>{
-        // if(data &&data.role){
-        //   const {role}= data.role
-
+  
         setTimeout(() => {
           navigation(`/`)
         }, 1000);
-          
-        //   if(role==="user"){
-        //     navigation(`/profile`)
-            
-        //   }else{
-        //     navigation(`/${role}`)
-        //   }
-         console.log(data)
-        // }
       }))
 
     } catch (error) {

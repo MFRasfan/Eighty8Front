@@ -46,7 +46,6 @@ const StaffForm = ({ toggleForm }) => {
 
   const handleSubmit = () => {
     try {
-      console.log(validateEmail(input.email))
       if(!input.firstName){
         throw "Please enter first name"
       } else if(!input.lastName){
@@ -89,7 +88,6 @@ const StaffForm = ({ toggleForm }) => {
           status: ""
         })
       }))
-      console.log(obj)
     } catch (error) {
       console.log(error)
     }
@@ -248,7 +246,6 @@ const StaffForm = ({ toggleForm }) => {
                   name={"role"}
                   style={{ border: 0 }}
                   onChange={(val) => {
-                    console.log(val);
                     setinput({ ...input, role: val });
                   }}
                   value={input.role}
@@ -264,7 +261,6 @@ const StaffForm = ({ toggleForm }) => {
                   name={"role"}
                   style={{ border: 0 }}
                   onChange={(val) => {
-                    console.log(val);
                     setinput({ ...input, status: val });
                   }}
                   value={input.status}
@@ -273,60 +269,6 @@ const StaffForm = ({ toggleForm }) => {
               </div>
             </div>
           </div>
-
-          {/* <div className="flex flex-col space-x-4 md:flex-row">
-            <div className="md:w-[50%]">
-              <label className={`${formStyle.label} font-bold`}>Email</label>
-              <div className="mt-1 mb-1">
-                <input
-                  name={"username"}
-                  className={formStyle.input}
-                  value={input.username}
-                  onChange={onInputChange}
-                />
-              </div>
-            </div>
-
-            <div className="md:w-[50%]">
-              <label className={`${formStyle.label} font-bold`}>Phone</label>
-              <div className="mt-1 mb-1">
-                <input
-                  name={"role"}
-                  className={formStyle.input}
-                  value={input.role}
-                  onChange={onInputChange}
-                />
-              </div>
-            </div>
-          </div> */}
-
-          {/* <div className="flex flex-col space-x-4 md:flex-row">
-            <div className="md:w-[50%]">
-              <label className={`${formStyle.label} font-bold`}>Password</label>
-              <div className="mt-1 mb-1">
-                <input
-                  name={"username"}
-                  className={formStyle.input}
-                  value={input.username}
-                  onChange={onInputChange}
-                />
-              </div>
-            </div>
-
-            <div className="md:w-[50%]">
-              <label className={`${formStyle.label} font-bold`}>
-                Confirm Password
-              </label>
-              <div className="mt-1 mb-1">
-                <input
-                  name={"role"}
-                  className={formStyle.input}
-                  value={input.role}
-                  onChange={onInputChange}
-                />
-              </div>
-            </div>
-          </div> */}
 
           <button
             onClick={() => handleSubmit()}

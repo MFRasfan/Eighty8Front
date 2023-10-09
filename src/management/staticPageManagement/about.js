@@ -56,12 +56,10 @@ function About() {
   useEffect(() => {
     dispatch(getAbout(data=>{
       if(data && data.length>0){
-        console.log(data[0])
         sethomeDetails(data[0])
         if(data[0].section1){
           setsection1(data[0].section1)
         }
-        console.log(data[0].section2)
         if(data[0].section2 !== undefined){
           setsection2(data[0].section2)
         }
@@ -101,7 +99,6 @@ function About() {
 
 
     await dispatch(deleteImage(filename, (response) => {
-    console.log("=========================",filename,response)
       if (response.message) {
         setdeleteImages(prev => prev.filter(item => item !== filename))
       } else {
@@ -213,14 +210,12 @@ function About() {
         throw "Please select banner image"
       }
 
-      // console.log("aaaaaaaaaaaaaaa",imageFile)
       if(ImagePreview){
        
         const formData = new FormData()
         formData.append('file', imageFile)
 
         dispatch(uploadMedia(formData, image=>{
-          // console.log("image==============",image)
           if(image.data && image.data.url){
             let obj = {}
            obj.image = image.data.url
@@ -233,25 +228,22 @@ function About() {
              obj.description = section1.description
             }
 
-            // console.log("1=========", {obj})
-            
             dispatch(addAndUpdateAbout({section1:obj}, res=>{
-              // console.log("res----------",res)
             } ))
           }
         }))
       }else{
-        const section1 = {}
+        const obj = {}
         if(section1.title){
-          section1.title= section1.title
+          obj.title= section1.title
         }
        
         if(section1.description ){
-          section1.description = section1.description
+          obj.description = section1.description
         }
-        // console.log("2=========", {section1})
-        dispatch(addAndUpdateAbout({section1}, res=>{
-          // console.log("res----------",res)
+        obj.image= section1.image
+        
+        dispatch(addAndUpdateAbout({section1:obj}, res=>{
         } ))
       }
 
@@ -279,15 +271,12 @@ function About() {
 
 
   const handleUploadImage=(file,index, cb)=>{
-    // console.log("file---------",file, file.name, typeof file)
       if(file.name){
         const formData= new FormData()
         formData.append('file', file)
         dispatch(uploadMedia(formData,(data)=>{
           let temp= section2.slice(0)
           temp[index].image= data.data.url
-    // console.log("url---------",data)
-          
           setsection2(temp)
           cb()
         }))
@@ -298,18 +287,27 @@ function About() {
 
 
   const uploadCar1Image=()=>{
-    console.log({SC1_imageFile})
+    if(section2[0].ImagePreview){
     handleUploadImage(SC1_imageFile, 0, uploadCar2Image)
+    }else{
+      uploadCar2Image()
+    }
   }
 
   const uploadCar2Image=()=>{
-    console.log({SC2_imageFile})
+    if(section2[1].ImagePreview){
     handleUploadImage(SC2_imageFile, 1, uploadCar3Image)
+    }else{
+      uploadCar3Image()
+    }
   }
 
   const uploadCar3Image=()=>{
-    console.log({SC3_imageFile})
-    handleUploadImage(SC3_imageFile, 2, submitSection2Final)
+    if(section2[2].ImagePreview){
+      handleUploadImage(SC3_imageFile, 2, submitSection2Final)
+    }else{
+      submitSection2Final()
+    }
   }
 
 
@@ -324,8 +322,6 @@ function About() {
   }
  
   const submitSection2=()=>{
-    console.log("SC1_imageFile",SC1_imageFile, section2)
- 
     try {
 
       if(!section2[0].title){
@@ -402,15 +398,12 @@ function About() {
         throw "Please select section 2.3 image"
       }
 
-      if(section2[0].ImagePreview){
         uploadCar1Image()
-    }
 
     } catch (error) {
       toast.error(error.message|| error)
       
     }
-    console.log(section2)
   }
 
   const submitSection3=()=>{
@@ -484,10 +477,6 @@ function About() {
          
         dispatch(addAndUpdateAbout({section3:section3}, res=>{
         } ))
-      
-
-    
-
 
     } catch (error) {
       toast.error(error.message|| error)
@@ -533,14 +522,12 @@ function About() {
 
   const handleFileChange = (event) => {
     // setslideImages(event.target.files[0]);
-    console.log(event.target.files[0])
     const file = event.target.files[0];
     let temp= selectedFiles.slice(0)
     temp.push(file)
     setselectedFiles(temp);
     const fileReader = new FileReader();
     fileReader.onload = () => {
-      console.log(fileReader.result)
       let temp= previewUrl.slice(0)
       temp.push(fileReader.result)
       setPreviewUrl(temp);
@@ -549,11 +536,9 @@ function About() {
   };
   const removeImageFromFileAndPreview=(item,index)=>{
     let fileTemp= selectedFiles.slice(0)
-    console.log("b",fileTemp)
     fileTemp.splice(index,1)
     let previewUrlTemp= previewUrl.slice(0)
     previewUrlTemp.splice(index,1)
-    console.log("a",fileTemp)
     setselectedFiles(fileTemp)
     setPreviewUrl(previewUrlTemp)
   
@@ -582,7 +567,6 @@ function About() {
 
     } catch (error) {
       toast.error(error||'Network Error');
-      console.log(error)
       setIsLoading(false)
     }
   }

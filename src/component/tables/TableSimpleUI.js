@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function TableSimpleUI({ thead, data, actions, tdcells }) {
-  console.log(thead, data, actions);
   return (
     <div className=" flex flex-col">
       <div className="overflow-x-auto">

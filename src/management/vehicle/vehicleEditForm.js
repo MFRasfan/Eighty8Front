@@ -34,14 +34,6 @@ const VehicleEditForm = ({ toggleForm, data }) => {
     
     if(Object.keys(input).length<=1){
       dispatch(getVehicleDetailsById(data._id, response=>{
-        // let obj={
-        //   ...response,
-        //   ...response.details
-        // }
-        // delete obj.details
-        
-        // setinput(obj)
-        console.log("OBJ=================", response)
         setinput(response)
         handleFetchDetails()
       }))
@@ -54,11 +46,7 @@ const VehicleEditForm = ({ toggleForm, data }) => {
     
       let uri = `${url.carAPI.fetchCarDetailsByVin}${input.vin}`
       const res = await axios.get(uri)
-      // let res = await axios.get(`https://specifications.vinaudit.com/v3/specifications?format=json&key=VA_DEMO_KEY&vin=${data.vin}`)
-      // res= res
-      // console.log(res.data, `https://specifications.vinaudit.com/v3/specifications?format=json&key=VA_DEMO_KEY&vin=${data.vin}`)
-
-    
+       
       if(res?.selections?.trims){
         let temp =[]
         for (const iterator of  res.selections.trims) {
@@ -132,7 +120,6 @@ const VehicleEditForm = ({ toggleForm, data }) => {
 
 
     await dispatch(deleteImage(filename, (response) => {
-    console.log("=========================",filename,response)
       if (response.message) {
         setdeleteImages(prev => prev.filter(item => item !== filename))
       } else {
@@ -162,9 +149,7 @@ const VehicleEditForm = ({ toggleForm, data }) => {
         details: inputData.details,
         images: [...input.images, ...justUploadedImages]
       }
-      console.log(data._id, obj, 1)
       dispatch(updateVehicleDetails(data._id, obj, () => {
-        console.log(2)
         handleDeleteAll()
         setinput({
           "year": "",
@@ -217,7 +202,6 @@ const VehicleEditForm = ({ toggleForm, data }) => {
 
     } catch (error) {
       toast.error('Network Error');
-      alert(JSON.stringify(error))
       console.log(error)
     }
   }
@@ -305,17 +289,8 @@ const VehicleEditForm = ({ toggleForm, data }) => {
 
   }
 
-
-  // useEffect(()=>{
-  //   console.log(input.vin)
-  // },)
-
   const VinNumber = input.vin ? input.vin.slice(-6) : ''
   
-  console.log(VinNumber)
-  console.log(input.vin)
-
-
   const renderImageSection = () => {
     return (
       <div>

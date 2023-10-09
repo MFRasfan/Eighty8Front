@@ -18,8 +18,6 @@ import DashboardLayout from '../../component/dashboardLayout'
 //    }));
 
  
-
-// console.log("roles.roles==========",roles)
 //   useEffect(() => {
 //     if(!roles.length){
 //       dispatch(getAllRoles())
@@ -32,7 +30,6 @@ import DashboardLayout from '../../component/dashboardLayout'
 //   }
  
 // const updatePermissionHandler=(item,index)=>{
-//   console.log("update permission",item,index)
 // }
 // const renderRoleTableBody=(item,index)=>{
 //   return(

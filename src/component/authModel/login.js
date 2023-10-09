@@ -48,7 +48,6 @@ const Login = ({setactiveTab, closeModal}) => {
             navigation(`/${temp}`)
           }, 2000);
           }
-         console.log(data)
         }
       }))
 

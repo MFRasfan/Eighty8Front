@@ -185,7 +185,6 @@ const VehicleForm = ({ toggleForm }) => {
 
     await dispatch(
       uploadMedia(formData, (response) => {
-        console.log(response.data);
         if (response.data && response.data.url) {
           //  Remove the uploaded file from the selected files array after successful upload
           setselectedFiles((prevSelectedFiles) =>
@@ -194,12 +193,7 @@ const VehicleForm = ({ toggleForm }) => {
 
           let temp = justUploadedImages;
           temp.push(response.data.url);
-          console.log(
-            "temp-----------------",
-            temp,
-            response.data.url,
-            justUploadedImages
-          );
+       
           setjustUploadedImages(temp);
         } else {
           toast.error("Network Error");
@@ -284,12 +278,12 @@ const VehicleForm = ({ toggleForm }) => {
         })
       );
 
-      console.log(obj);
+    
 
       // submit the data
       // clear the input files
     } catch (error) {
-      toast.error("Metwork Error");
+      toast.error("Network Error");
       console.log(error);
     }
   };
@@ -306,7 +300,6 @@ const VehicleForm = ({ toggleForm }) => {
         throw "Please Enter Vin Number";
       }
       if (Object.keys(input).length < 34) {
-        console.log(input);
         throw "Please enter all fields";
       }
       if (selectedFiles.length === 0) {
@@ -350,7 +343,6 @@ const VehicleForm = ({ toggleForm }) => {
   };
 
   const handleFileChange = (event) => {
-    console.log(event.target.files);
     const files = event.target.files;
     let temp = [...selectedFiles];
     let tempPreUrl = [...previewUrl];
@@ -372,11 +364,9 @@ const VehicleForm = ({ toggleForm }) => {
 
   const removeImageFromFileAndPreview = (item, index) => {
     let fileTemp = selectedFiles.slice(0);
-    console.log("b", fileTemp);
     fileTemp.splice(index, 1);
     let previewUrlTemp = previewUrl.slice(0);
     previewUrlTemp.splice(index, 1);
-    console.log("a", fileTemp);
     setselectedFiles(fileTemp);
     setPreviewUrl(previewUrlTemp);
   };
@@ -384,7 +374,6 @@ const VehicleForm = ({ toggleForm }) => {
   const handleSelectTrim = (item) => {
     const { value } = item;
     const selectedtrim = trimOptions.find((item) => (item.name = value));
-    console.log(selectedtrim);
     let temp = [];
     for (const iterator of selectedtrim.styles) {
       temp.push(iterator.name);
@@ -478,7 +467,6 @@ const VehicleForm = ({ toggleForm }) => {
                 className={formStyle.input}
                 value={input.vin}
                 onChange={(e) => {
-                  console.log(e.target.value);
                   setVimNumber(e.target.value);
                   onInputChange(e);
                 }}

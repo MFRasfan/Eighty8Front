@@ -7,7 +7,6 @@ import { Link, useNavigate} from 'react-router-dom'
 
 const MobileNavbar = ({className, closeModal, children, isLoggedIn}) => {
 
-  console.log(children)
   const [showLang, setshowLang] = useState(false)
   const [selectedLang, setselectedLang] = useState("ENG")
   const navigate= useNavigate()

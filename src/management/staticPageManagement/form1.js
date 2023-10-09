@@ -21,7 +21,6 @@ function Form1(props) {
     setData(val);
   };
 
-  console.log("props.data", props.data, input)
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];

@@ -246,7 +246,6 @@ function Home() {
         throw "Please select banner image";
       }
 
-      // console.log("aaaaaaaaaaaaaaa", imageFile);
       if (ImagePreview) {
         const formData = new FormData();
         formData.append("file", imageFile);
@@ -264,11 +263,9 @@ function Home() {
                 section1_banner.description = bannerDetails.description;
               }
 
-              console.log("1=========", { section1_banner });
 
               dispatch(
                 addAndUpdateHome({ section1_banner }, (res) => {
-                  console.log("res----------", res);
                 })
               );
             }
@@ -283,10 +280,9 @@ function Home() {
         if (bannerDetails.description) {
           section1_banner.description = bannerDetails.description;
         }
-        console.log("2=========", { section1_banner });
+        section1_banner.image = bannerDetails.image
         dispatch(
           addAndUpdateHome({ section1_banner }, (res) => {
-            console.log("res----------", res);
           })
         );
       }
@@ -297,16 +293,12 @@ function Home() {
 
   const handleSection2Change = (val, index) => {
     let temp = section2.slice(0);
-    console.log(1,temp)
     temp[index] = val;
-    console.log(2,temp)
-
     setsection2(temp);
   };
   
 
   const handleUploadImage = (file, index, cb) => {
-    console.log("file---------", file, file.name, typeof file);
     if (file.name) {
       const formData = new FormData();
       formData.append("file", file);
@@ -314,8 +306,6 @@ function Home() {
         uploadMedia(formData, (data) => {
           let temp = section2.slice(0);
           temp[index].image = data.data.url;
-          console.log("url---------", data);
-
           setsection2(temp);
           cb();
         })
@@ -348,8 +338,7 @@ function Home() {
   };
 
   const submitSection2 = () => {
-    console.log("section2 details", section2);
-
+  
     try {
       if (!section2[0].title) {
         throw "Please enter card one title";
@@ -440,7 +429,7 @@ function Home() {
     } catch (error) {
       toast.error(error.message || error);
     }
-    console.log(section2);
+
   };
 
   const submitSection3 = () => {
@@ -553,12 +542,11 @@ function Home() {
 
   const handleUpload = async (file) => {
     const formData = new FormData();
-
     formData.append("file", file);
 
     await dispatch(
       uploadMedia(formData, (response) => {
-        console.log(response.data);
+       
         if (response.data && response.data.url) {
           //  Remove the uploaded file from the selected files array after successful upload
           setselectedFiles((prevSelectedFiles) =>
@@ -567,12 +555,6 @@ function Home() {
 
           let temp = justUploadedImages;
           temp.push(response.data.url);
-          console.log(
-            "temp-----------------",
-            temp,
-            response.data.url,
-            justUploadedImages
-          );
           setjustUploadedImages(temp);
         } else {
           toast.error("Network Error");
@@ -591,14 +573,12 @@ function Home() {
 
   const handleFileChange = (event) => {
     // setslideImages(event.target.files[0]);
-    console.log(event.target.files[0]);
     const file = event.target.files[0];
     let temp = selectedFiles.slice(0);
     temp.push(file);
     setselectedFiles(temp);
     const fileReader = new FileReader();
     fileReader.onload = () => {
-      console.log(fileReader.result);
       let temp = previewUrl.slice(0);
       temp.push(fileReader.result);
       setPreviewUrl(temp);
@@ -607,11 +587,9 @@ function Home() {
   };
   const removeImageFromFileAndPreview = (item, index) => {
     let fileTemp = selectedFiles.slice(0);
-    console.log("b", fileTemp);
     fileTemp.splice(index, 1);
     let previewUrlTemp = previewUrl.slice(0);
     previewUrlTemp.splice(index, 1);
-    console.log("a", fileTemp);
     setselectedFiles(fileTemp);
     setPreviewUrl(previewUrlTemp);
   };
@@ -637,7 +615,6 @@ function Home() {
       }
     } catch (error) {
       toast.error(error || "Network Error");
-      console.log(error);
       setIsLoading(false);
     }
   };
@@ -645,11 +622,9 @@ function Home() {
   const submitSection5Images = () => {
     dispatch(
       addAndUpdateHome({ section5: { image: justUploadedImages } }, (res) => {
-        console.log("res========", res);
         handleDeleteAll();
       })
     );
-    console.log(justUploadedImages);
   };
 
   return (

@@ -22,7 +22,7 @@ const InquiryForm = ({vehicleid,id,reference}) => {
   const contact = useSelector((state) => state.webContent.contactDetails);
 
   useEffect(() => {
-    console.log(user && user._id && user.role.role==="user")
+
    if(user && user._id && user.role.role==="user"){
   
     setinput({
@@ -38,7 +38,7 @@ const InquiryForm = ({vehicleid,id,reference}) => {
   useEffect(() => {
     if (contact.length === 0) {
       dispatch(getContact((data) =>{
-        console.log(data)
+
         if(data[0] ){
           setcontactDetails(data[0]) 
           }

@@ -16,7 +16,6 @@ const CheckList = ({optionList, seletedItemList, setselectedListItems,  itemText
         }
 
         setselectedListItems(temp)
-        console.log(findItem)
     }
   return (
     <>

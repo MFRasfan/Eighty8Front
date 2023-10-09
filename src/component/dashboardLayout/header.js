@@ -50,9 +50,7 @@ const Header = () => {
     // Clear interval when the component unmounts
     return () => clearInterval(interval);
   }, [dispatch]);
-  
 
-  // console.log(location)
   const style={
   link:'text-gray-600 font-semibold text-lg duration-300 ease-in-out hover:text-primary cursor-pointer',
   navbrand:'text-primary font-bold text-3xl',

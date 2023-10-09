@@ -29,7 +29,6 @@ export const validateEmail=( email)=>{
 }
 
 export const validateNickname=val=>{
-    console.log("nickname===", val)
     let regularExpression=/[^a-zA-Z0-9 ]/
     if(!val.length){
         return "Please enter nickname " +val

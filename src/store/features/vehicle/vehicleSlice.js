@@ -13,7 +13,6 @@ export const vehicleSlice= createSlice({
             state.loading= action.payload
         },
         setVehicle:(state, action)=>{
-            console.log("Acrion",action)
             state.vehicles= action.payload
         }
     }

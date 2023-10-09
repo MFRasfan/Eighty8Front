@@ -55,7 +55,6 @@ const Verificationcode = ({setactiveTab,email,setcode, type, closeModal}) => {
       if(!input.code) throw "Please enter verification code"
       if(input.code.length<6) throw "Verification code should be atleast 6 characters long"
 
-      console.log(email)
       let obj={
         code:String(input.code),
         email:email
@@ -63,7 +62,6 @@ const Verificationcode = ({setactiveTab,email,setcode, type, closeModal}) => {
       
 
         dispatch(verifyAccount(obj, (data)=>{
-          console.log(type)
             if(data.code && data.code !== 200){
              return toastComponent.error(data.message)
             }else{

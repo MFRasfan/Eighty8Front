@@ -217,13 +217,11 @@ function  filterDataByYearRange(range){
       }
     } 
     setshowAllBrandList(true)
-    console.log("uniqueMakes", uniqueMakes)
+
     const brandListDataArray = Array.from(uniqueMakes);
 
     SET_BRAND_LIST_DATA(brandListDataArray);
-    // console.log("brandDAta=======", filteredData)
     // uniqueMakes.length > 0 ? SET_BRAND_LIST_DATA(uniqueMakes) : SET_BRAND_LIST_DATA([])
-    // console.log(BRAND_LIST_DATA)
     
     // SET_BRAND_LIST_DATA(uniqueMakes)
     // return filteredData;
@@ -458,7 +456,6 @@ function  filterDataByYearRange(range){
                 }
                 seletedItemList={selectedBrand}
                 setselectedListItems={(val) => {
-                  console.log(val);
                   handleFilter("brands", val);
                   setselectedBrand(val);
                 }}
@@ -510,7 +507,6 @@ function  filterDataByYearRange(range){
                 }
                 seletedItemList={selectedStyle}
                 setselectedListItems={(val) => {
-                  console.log(val);
                   handleFilter("style", val);
 
                   setselectedStyle(val);
@@ -560,9 +556,7 @@ function  filterDataByYearRange(range){
                 optionList={BODY_TYPE_DATA}
                 seletedItemList={selectedBodyTypes}
                 setselectedListItems={(val) => {
-                  console.log(val);
                   handleFilter("bodyType", val);
-
                   setselectedBodyTypes(val);
                 }}
               />
@@ -604,7 +598,6 @@ function  filterDataByYearRange(range){
                 optionList={EXTERIOR_COLOR}
                 seletedItemList={selectedColors}
                 setselectedListItems={(val) => {
-                  console.log(val);
                   handleFilter("colors", val);
                   setselectedColors(val);
                 }}
@@ -644,9 +637,7 @@ function  filterDataByYearRange(range){
                 optionList={SEATS}
                 seletedItemList={selectedSeats}
                 setselectedListItems={(val) => {
-                  console.log(val);
                   handleFilter("seats", val);
-
                   setselectedSeats(val);
                 }}
               />
@@ -687,9 +678,7 @@ function  filterDataByYearRange(range){
                 optionList={TRANSMISSIONS}
                 seletedItemList={selectedTransmission}
                 setselectedListItems={(val) => {
-                  console.log(val);
                   handleFilter("transmission", val);
-
                   setselectedTransmission(val);
                 }}
               />
@@ -728,9 +717,7 @@ function  filterDataByYearRange(range){
                 optionList={FUEL_TYPE}
                 seletedItemList={selectedFuelType}
                 setselectedListItems={(val) => {
-                  console.log(val);
                   handleFilter("fuelType", val);
-
                   setselectedFuelType(val);
                 }}
               />
@@ -769,7 +756,6 @@ function  filterDataByYearRange(range){
                 optionList={DRIVE_TRAINS}
                 seletedItemList={selectedDriveTrain}
                 setselectedListItems={(val) => {
-                  console.log(val);
                   handleFilter("driveTrain", val);
 
                   setselectedDriveTrain(val);
@@ -812,7 +798,6 @@ function  filterDataByYearRange(range){
                 }
                 seletedItemList={selectedCylinders}
                 setselectedListItems={(val) => {
-                  console.log(val);
                   handleFilter("cylinders", val);
                   setselectedCylinders(val);
                 }}
