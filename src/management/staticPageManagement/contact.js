@@ -155,17 +155,17 @@ function Contact() {
           
       }
       
-    if( section2.weekendOpenTime &&  !section2.weekendCloseTime ){
-      throw "Please select weekend  office close time"
-  }
-      if( section2.weekendOpenTime &&  section2.weekendCloseTime ){
-        const weekendopeningTime = moment(section2.weekdaysOpenTime, "HH:mm");
-      const weekclosingTime = moment(section2.weekdaysCloseTime, "HH:mm");
-      if (!weekclosingTime.isAfter(weekendopeningTime)) {
-          throw "Office close time should be greater then office open time for weekends"
-      }
+  //   if( section2.weekendOpenTime &&  !section2.weekendCloseTime ){
+  //     throw "Please select weekend  office close time"
+  // }
+  //     if( section2.weekendOpenTime &&  section2.weekendCloseTime ){
+  //       const weekendopeningTime = moment(section2.weekdaysOpenTime, "HH:mm");
+  //     const weekclosingTime = moment(section2.weekdaysCloseTime, "HH:mm");
+  //     if (!weekclosingTime.isAfter(weekendopeningTime)) {
+  //         throw "Office close time should be greater then office open time for weekends"
+  //     }
       
-  }
+  // }
         if( !section2.addressTitlePrimary ){
           throw "Please enter  primary office address title"
       }
@@ -285,11 +285,11 @@ function Contact() {
          </div>
        </div>
        </div>
-       <p className={`${formStyle.h1Dashboard} text-lg text-primary mt-4 mb-0 `}>Weekdays office Timings</p>
+       <p className={`${formStyle.h1Dashboard} text-lg text-primary mt-4 mb-0 `}>Office Timings</p>
 
        <div className='flex justify-around items-center -mt-5'>
             <div className="md:w-[45%]">
-                <label className={`${formStyle.label} font-bold`}>Weekdays office open time </label>
+                <label className={`${formStyle.label} font-bold`}>Office open time </label>
                 <div className="mt-1 mb-1">
                   <input
                     name={"weekdaysOpenTime"}
@@ -302,7 +302,7 @@ function Contact() {
             </div>
           </div>
           <div className="md:w-[45%]">
-                <label className={`${formStyle.label} font-bold`}>Weekdays office close time</label>
+                <label className={`${formStyle.label} font-bold`}>Office close time</label>
                 <div className="mt-1 mb-1">
                   <input
                     name={"weekdaysCloseTime"}
@@ -315,7 +315,7 @@ function Contact() {
           </div>
 
         </div>
-
+ {/*
         <p className={`${formStyle.h1Dashboard} text-lg text-primary mt-4 mb-0 `}>Weekends office Timings</p>
 
         <div className='flex justify-around items-center -mt-5'>
@@ -345,7 +345,7 @@ function Contact() {
             </div>
           </div>
 
-        </div>
+        </div> */}
 
        <p className={`${formStyle.h1Dashboard} text-lg text-primary mt-4 mb-0 `}>Primay Office Address</p>
        <div className='flex justify-around items-center -mt-5'>

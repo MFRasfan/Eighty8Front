@@ -221,10 +221,11 @@ const InquiryForm = ({vehicleid,id,reference}) => {
         </div>
         <div className=' flex space-x-4  text-gray-800 '>
         <AiFillClockCircle size={18} className="mt-1"/>
-        <p>Weekdays: {contactDetails.weekdaysOpenTime?moment(contactDetails.weekdaysOpenTime, "HH:mm").format("hh:mm A") :"" } - {contactDetails.weekdaysCloseTime?moment(contactDetails.weekdaysCloseTime, "HH:mm").format("hh:mm A") :"" } <br/>
-       {!!contactDetails.weekendOpenTime&& <span>
+        <p>Monday To Saturday: {contactDetails.weekdaysOpenTime?moment(contactDetails.weekdaysOpenTime, "HH:mm").format("hh:mm A") :"" } - {contactDetails.weekdaysCloseTime?moment(contactDetails.weekdaysCloseTime, "HH:mm").format("hh:mm A") :"" } <br/>
+       {/* {!!contactDetails.weekendOpenTime&& <span>
           Weekend:{'   '}{contactDetails.weekendOpenTime?moment(contactDetails.weekendOpenTime, "HH:mm").format("hh:mm A") :"" } - {contactDetails.weekendCloseTime?moment(contactDetails.weekendCloseTime, "HH:mm").format("hh:mm A") :"" } 
-        </span>}
+        </span>} */}
+        <span>Sunday: OFF</span>
           <br/>
         </p>
         </div>
