@@ -4,7 +4,7 @@ const AboutCard = ({data,imageContainerStyle, imageStyle}) => {
   const {title, heading, description, image, imageLeft=true}= data
   return (
     <div className=' my-[6%] flex  md:flex-row flex-col xs:items-center md:items-start justify-center'>
-        {imageLeft &&  <div className={`w-[80vw] only:mt-16  md:w-[30%] sm:h-[400px] md:h-[300px] ${imageContainerStyle}`}>
+        {imageLeft &&  <div className={`w-[80vw] md:mt-16  md:w-[30%] sm:h-[400px] md:h-[300px] ${imageContainerStyle}`}>
           <img src={image} className={`h-[100%] z-10 w-[800px] rounded-lg`} />
     
       </div>}
