@@ -225,7 +225,7 @@ const InquiryForm = ({vehicleid,id,reference}) => {
        {/* {!!contactDetails.weekendOpenTime&& <span>
           Weekend:{'   '}{contactDetails.weekendOpenTime?moment(contactDetails.weekendOpenTime, "HH:mm").format("hh:mm A") :"" } - {contactDetails.weekendCloseTime?moment(contactDetails.weekendCloseTime, "HH:mm").format("hh:mm A") :"" } 
         </span>} */}
-        <span>Sunday: OFF</span>
+        <span>Sunday: Closed</span>
           <br/>
         </p>
         </div>

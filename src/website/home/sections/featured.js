@@ -11,7 +11,7 @@ import { imageURL } from '../../../store/api'
 const Featured = ({data={}}) => {
   return (
     <div className='bg-gray-50 py-20'>
-      <p className='text-4xl text-gray-700 font-bold mb-10 text-center'>As Featured In</p>
+      <p className='text-4xl text-gray-700 font-bold mb-10 text-center'>Our Partners</p>
       <div className='flex md:flex-row flex-col items-center justify-center md:space-x-20'>
           {(!!data.image && data.image !== undefined  &&data.image.length>0) && data.image.map((item,index)=>{
             return (

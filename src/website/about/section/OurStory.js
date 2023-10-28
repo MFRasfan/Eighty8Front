@@ -9,7 +9,7 @@ const OurStory = ({data}) => {
   if(data){
      
   let obj={
-    title:"CREDIBILITY or CERTIFIED DEALERS",
+    title:"CREDIBILITY",
     heading:data.title||"",
     description:data.description ||"",
     image: imageURL+data.image ||"",

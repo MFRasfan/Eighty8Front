@@ -8,17 +8,17 @@ const QualityCheckPoint = ({data={}}) => {
   return (
     <div 
     
-      className=" md:h-[60vh] 
+      className=" md:h-[60vh]
        w-full flex my-20 md:my-40 items-center"
       >
         
       <div 
     
-      className='h-[100%]  md:flex items-center md:px-20'>
+      className='h-[100%] w-[100%] md:flex items-center md:px-20'>
         
         <div className='md:w-[50%] px-10 md:pl-0 pr-20'>
-          <p className='text-4xl md:text-5xl text-gray-700 pb-3 font-bold '>{data.title? data.title.split(" ")[0]:"Quality"}</p>
-          <p className='text-4xl md:text-5xl text-gray-700 pb-10 font-bold '>{data.title? data.title.slice(data.title.split(" ")[0].length+1):"you can count on"}</p>
+          <p className='text-3xl md:text-5xl text-gray-700 pb-2 font-bold '>{data.title? data.title.split(" ")[0]:"Quality"}</p>
+          <p className='text-3xl md:text-5xl text-gray-700 pb-10 font-bold '>{data.title? data.title.slice(data.title.split(" ")[0].length+1):"you can count on"}</p>
 
          
       <p>
