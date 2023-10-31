@@ -44,7 +44,7 @@ const HowItWorks = ({data=[]}) => {
 
   return (
     <div>
-      <p className='text-4xl md:text-5xl text-gray-700 text-center pt-20 pb-10 font-bold'>How it works</p>
+      <p className='text-4xl md:text-5xl text-gray-700 text-center pt-20 pb-10 font-bold'>As Featured I</p>
       <div className='md:flex md:px-10 items-center justify-evenly'>
         {list.map((item,index)=>card(item,index))}
       </div>

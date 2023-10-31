@@ -3,7 +3,8 @@ import ReactPlayer from 'react-player/lazy'
 import { imageURL } from '../../../store/api'
 import Reviews from './reviews'
 
-import { BiPlay } from 'react-icons/bi'
+import { BiPlay, BiRectangle } from 'react-icons/bi'
+
 import { COLORS } from '../../../utils/color'
 const FanVideo = ({data={}}) => {
   const [play, setplay] = useState(false)
@@ -19,7 +20,13 @@ const FanVideo = ({data={}}) => {
           playing={play}
           url={data.video?imageURL+data.video:'https://www.youtube.com/watch?v=ysz5S6PUM-U'} />
       
-       <BiPlay size={100} onClick={()=>setplay(!play)} className="-mt-72 mb-40" color={play?'transparent': COLORS.white}/>
+        {
+          play?  
+          <div onClick={()=>setplay(!play)}  className='xs:-mt-[72vh] md:-mt-[90vh] opacity-70 w-full xs:h-[42vh] md:h-[90vh]'/>:
+          <BiPlay size={100} onClick={()=>setplay(!play)} className="-mt-72 mb-40" color={'white'}/>
+
+        }
+          {/* <BiRectangle size={600} onClick={()=>setplay(!play)} className="xs:-mt-[100%] md:-mt-[60%] w-full" color={'red'}/>: */}
       {/* <Reviews/> */}
       <div className='h-[36vh]'></div>
     </div>
