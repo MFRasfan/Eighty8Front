@@ -26,7 +26,8 @@ const AdminDashboard = () => {
       from:moment(fromDate).format('MM/DD/YYYY'),
       to:moment(toDate).add(1, 'months').format('MM/DD/YYYY'), 
     }
-    dispatch(getInquirySalesStatistics(obj,(data)=>{  
+    dispatch(getInquirySalesStatistics(obj,(data)=>{
+      console.log("data--------",data)
       temp.push({name:'Total Customers',quantity: 0})
       temp.push({name:'Total Team Members',quantity: 0})
       temp.push({name:'Total Inquiries',quantity: data.totalInquiries})

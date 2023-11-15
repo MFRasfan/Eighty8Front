@@ -1,8 +1,13 @@
 import React,{useState, useEffect} from "react";
 import { Pie } from "react-chartjs-2";
 import { COLORS } from "../../utils/color";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
+ChartJS.register(ArcElement, Tooltip, Legend);
 function PieChart({ Data }) {
+
+  
+
   const [chartData, setChartData] = useState({
     labels: [],
     datasets: [
@@ -41,8 +46,10 @@ function PieChart({ Data }) {
   return (
     <div className="chart-container">
       <h2 style={{ textAlign: "center" }}>Pie Chart</h2>
+      <p>{JSON.stringify(Data)}</p>
       <Pie
         data={chartData}
+     
         options={{
           plugins: {
             title: {
@@ -52,11 +59,11 @@ function PieChart({ Data }) {
           },
           elements: {
             arc: {
-              borderWidth: 0,
+              borderWidth: 1,
             },
           },
         }}
-      />
+        />
     </div>
   );
 }
