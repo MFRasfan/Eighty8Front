@@ -40,6 +40,7 @@ const VehicleEditForm = ({ toggleForm, data }) => {
     }
    
   }, [data._id])
+  
 
   const handleFetchDetails=async()=>{
     try {

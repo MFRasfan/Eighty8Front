@@ -4,6 +4,7 @@ import {TbWorld} from 'react-icons/tb'
 import {AiOutlineMenu, AiOutlineUser} from 'react-icons/ai'
 import {BiCart} from "react-icons/bi"
 import { Link, useNavigate} from 'react-router-dom'
+import Logo from "../../assets/logo.svg";
 
 const MobileNavbar = ({className, closeModal, children, isLoggedIn}) => {
 
@@ -15,7 +16,7 @@ const MobileNavbar = ({className, closeModal, children, isLoggedIn}) => {
     <div className={'fixed w-full h-full  '+className}>
 
     <div className='flex justify-between items-start'>
-        <img src={require("../../assets/logo.png")} className="w-16 h-16 -mt-5"/>
+        <img src={Logo} className="w-16 h-16 -mt-5"/>
         <div className='absolute right-10 flex space-x-3'>
        {isLoggedIn &&<AiOutlineUser size={24}  onClick={()=>navigate(`/profile`)} className=" hover:text-secondary opacity-70"/>}
         

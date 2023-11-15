@@ -46,7 +46,6 @@ function PieChart({ Data }) {
   return (
     <div className="chart-container">
       <h2 style={{ textAlign: "center" }}>Pie Chart</h2>
-      <p>{JSON.stringify(Data)}</p>
       <Pie
         data={chartData}
      

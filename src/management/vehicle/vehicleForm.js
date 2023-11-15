@@ -3,30 +3,23 @@ import { formStyle } from "../../style/adminStyle";
 import { Zoom } from "react-slideshow-image";
 import "react-quill/dist/quill.snow.css";
 import { toast, ToastContainer } from "react-toastify";
-import {
-  AiOutlineEyeInvisible,
-  AiOutlineEye,
-  AiFillCloseCircle,
-} from "react-icons/ai";
+import {AiFillCloseCircle} from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import "react-slideshow-image/dist/styles.css";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
-import { uploadMedia } from "../../store/features/media/mediaService";
-import { addVehicle } from "../../store/features/vehicle/vehicleService";
+import { uploadMedia, deleteImage } from "../../store/features/media/mediaService";
+import { addVehicle, updateVehicleDetails, getVehicleDetailsById } from "../../store/features/vehicle/vehicleService";
 import BeatLoader from "react-spinners/BeatLoader";
 import InputMask from "react-input-mask";
-import { url } from "../../store/api";
+import { imageURL, url } from "../../store/api";
 import "react-tabs/style/react-tabs.css";
-import { RiRefreshLine } from "react-icons/ri";
-import TableSimpleUI, {
-  AddRowTable,
-} from "../../component/tables/TableSimpleUI";
+
 import { BsTrashFill } from "react-icons/bs";
 
-const VehicleForm = ({ toggleForm }) => {
+const VehicleForm = ({ toggleForm, edit=false, editData }) => {
   const dispatch = useDispatch();
   const navigation = useNavigate();
   const fileInputRef = useRef(null);
@@ -42,7 +35,7 @@ const VehicleForm = ({ toggleForm }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [vimNumber, setVimNumber] = useState(null);
   const [activeTab, setactiveTab] = useState("Info");
-
+  const [deleteImages, setdeleteImages] = useState([])
   const [expenseItems, setExpenseItems] = useState([]);
   const [taxPercentage, setTaxPercentage] = useState(13);
 
@@ -56,10 +49,44 @@ const VehicleForm = ({ toggleForm }) => {
     setExpenseItems([...expenseItems, newExpense]);
   };
 
-  const handleSaveExpenses = () => {
-    console.log("Saved expenses:", expenseItems);
-  };
+  useEffect(() => {
+    
+    if(Object.keys(input).length<=1){
+      dispatch(getVehicleDetailsById(editData._id, response=>{
+        setinput({
+          vin:response.vin,
+        ...response.details,
+          images:response.images
+        })
+        setExpenseItems(response?.expenses?.expenseItems ||[])
+        setPurchases(response?.purchases?.purchaseItems||[])
+        setSales(response?.sales?.salesItems||[])
+        console.log(response)
+      }))
+    }
+   
+  }, [editData._id])
 
+
+  const handleDelete = async (filename) => {
+
+
+    await dispatch(deleteImage(filename, (response) => {
+      if (response.message) {
+        setdeleteImages(prev => prev.filter(item => item !== filename))
+      } else {
+        toast.error('Network Error')
+      }
+    }))
+  }
+
+  const handleDeleteAll = async () => {
+
+    for (const file of deleteImages) {
+      await handleDelete(file)
+    }
+
+  }
   const handleExpenseInputChange = (index, field, value) => {
     const updatedExpenses = [...expenseItems];
     updatedExpenses[index][field] = value;
@@ -90,9 +117,6 @@ const VehicleForm = ({ toggleForm }) => {
     setPurchases([...purchases, newPurchase]);
   };
 
-  const handleSavePurchase = () => {
-    console.log("Saved purchases:", purchases);
-  };
 
   const handleInputChange = (index, field, value) => {
     const updatedPurchases = [...purchases];
@@ -113,9 +137,22 @@ const VehicleForm = ({ toggleForm }) => {
   };
 
   const handleDeletePurchase = (index) => {
-    const updatedPurchases = [...purchases];
-    updatedPurchases[index].toBeDeleted = true;
+    let updatedPurchases = [...purchases];
+
+    updatedPurchases.splice(index,1)
     setPurchases(updatedPurchases);
+  };
+
+  const handleDeleteSales = (index) => {
+    const updatedSales = [...sales];
+    updatedSales.splice(index,1)
+    setSales(updatedSales);
+  };
+  const handleDeleteExpenses = (index) => {
+    const updatedExpenses = [...expenseItems];
+    updatedExpenses[index].toBeDeleted = true;
+    updatedExpenses.splice(index,1)
+    setExpenseItems(updatedExpenses);
   };
 
   const thead = [
@@ -209,7 +246,91 @@ const VehicleForm = ({ toggleForm }) => {
 
     submitData();
   };
+  const submitEditData = async () => {
+    try {
+      // make an object with all fields 
+      let inputData = Object.assign({}, input)
+      delete inputData.vin;
+  
+    
+      let obj = {
+        // vin: input.vin,
+        details: inputData.details,
+        images: [...input.images, ...justUploadedImages],
+        sales:{
+        salesItems:sales,
+          hstTotal: String( sales.reduce((total, obj) => total + obj.taxAmount, 0)),
+          costTotal:sales.reduce((total2, obj2) => parseFloat( total2 + parseFloat(obj2.cost)), 0) ||0,
+          grandTotal:sales.reduce((total2, obj2) => parseFloat( total2 + parseFloat(obj2.amount) +  parseFloat(obj2.cost)+ parseFloat(obj2.taxAmount)), 0) ||0
+        },
+        expenses:{
+          expenseItems,
+          hstTotal:String( expenseItems.reduce((total, obj) => total + obj.taxAmount, 0)),
+          grandTotal:expenseItems.reduce((total2, obj2) => parseFloat( total2 + parseFloat(obj2.amount) + parseFloat(obj2.taxAmount)), 0) ||0
+        },
+        purchases:{
+          purchaseItems:purchases,
+          hstTotal:String( purchases.reduce((total, obj) => total + obj.taxAmount, 0)),
+          grandTotal: purchases.reduce((total2, obj2) => parseFloat( total2 + parseFloat(obj2.amount) + parseFloat(obj2.taxAmount)), 0) ||0
+        },
+       
+      };
+      dispatch(updateVehicleDetails(editData._id, obj, () => {
+        handleDeleteAll()
+        setinput({
+          "year": "",
+          "make": "",
+          "model": "",
+          "trim": "",
+          "style": "",
+          "type": "",
+          "size": "",
+          "category": "",
+          "made_in": "",
+          "made_in_city": "",
+          "doors": "",
+          "fuel_type": "",
+          "fuel_capacity": "",
+          "city_mileage": "",
+          "highway_mileage": "",
+          "engine": "",
+          "engine_size": "",
+          "engine_cylinders": "",
+          "transmission": "",
+          "transmission_type": "",
+          "transmission_speeds": "",
+          "drivetrain": "",
+          "anti_brake_system": "",
+          "steering_type": "",
+          "curb_weight": "",
+          "gross_vehicle_weight_rating": "",
+          "overall_height": "",
+          "overall_length": "",
+          "overall_width": "",
+          "wheelbase_length": "",
+          "standard_seating": "",
+          // "invoice_price": "",
+          // "delivery_charges": "",
+          "manufacturer_suggested_retail_price": ""
+        })
+        setIsLoading(false)
+        setselectedFiles([])
+        setPreviewUrl([])
+        setjustUploadedImages([])
+        toggleForm()
 
+
+      }))
+
+      // submit the data
+      // clear the input files
+
+
+    } catch (error) {
+      toast.error('Network Error');
+      console.log(error)
+    }
+  }
   const submitData = async () => {
     try {
       // make an object with all fields
@@ -231,7 +352,26 @@ const VehicleForm = ({ toggleForm }) => {
         vin: input.vin,
         details: details,
         images: justUploadedImages,
+        sales:{
+        salesItems:sales,
+          hstTotal: String( sales.reduce((total, obj) => total + obj.taxAmount, 0)),
+          costTotal:sales.reduce((total2, obj2) => parseFloat( total2 + parseFloat(obj2.cost)), 0) ||0,
+          grandTotal:sales.reduce((total2, obj2) => parseFloat( total2 + parseFloat(obj2.amount) +  parseFloat(obj2.cost)+ parseFloat(obj2.taxAmount)), 0) ||0
+        },
+        expenses:{
+          expenseItems,
+          hstTotal:String( expenseItems.reduce((total, obj) => total + obj.taxAmount, 0)),
+          grandTotal:expenseItems.reduce((total2, obj2) => parseFloat( total2 + parseFloat(obj2.amount) + parseFloat(obj2.taxAmount)), 0) ||0
+        },
+        purchases:{
+          purchaseItems:purchases,
+          hstTotal:String( purchases.reduce((total, obj) => total + obj.taxAmount, 0)),
+          grandTotal: purchases.reduce((total2, obj2) => parseFloat( total2 + parseFloat(obj2.amount) + parseFloat(obj2.taxAmount)), 0) ||0
+        },
+       
       };
+
+      console.log(obj)
       dispatch(
         addVehicle(obj, () => {
           setinput({
@@ -274,6 +414,9 @@ const VehicleForm = ({ toggleForm }) => {
           setIsLoading(false);
           setselectedFiles([]);
           setPreviewUrl([]);
+          setExpenseItems([]);
+          setPurchases([]);
+          setSales([]);
           setjustUploadedImages([]);
         })
       );
@@ -290,7 +433,7 @@ const VehicleForm = ({ toggleForm }) => {
 
   const handleSubmit = async () => {
     try {
-      setIsLoading(true);
+      // setIsLoading(true);
 
       // check if the user has upload any new image then upload it into db and get new url
       // if multiple image then loop it and upload it one by one
@@ -302,7 +445,7 @@ const VehicleForm = ({ toggleForm }) => {
       if (Object.keys(input).length < 34) {
         throw "Please enter all fields";
       }
-      if (selectedFiles.length === 0) {
+      if (selectedFiles.length === 0 && !edit) {
         throw "Please upload atleast one image";
       }
       if (input.sellingPrice === 0) {
@@ -313,7 +456,7 @@ const VehicleForm = ({ toggleForm }) => {
         if (selectedFiles.length > 0) {
           await handleUploadAll();
         } else {
-          submitData();
+           edit? submitEditData(): submitData();
         }
       }
     } catch (error) {
@@ -327,9 +470,9 @@ const VehicleForm = ({ toggleForm }) => {
     fileInputRef.current.click();
   };
 
-  const handleFetchDetails = async () => {
+  const handleFetchDetails = async (vin) => {
     try {
-      if (!input.vin) {
+      if (!input.vin||!vin) {
         return toast.error("Please enter vin number");
       }
 
@@ -387,15 +530,16 @@ const VehicleForm = ({ toggleForm }) => {
     setinput({ ...input, style: value });
   };
   const style = {
-    activeTab: `border-b-2 text-gray-700 border-b-primary font-bold`,
+    activeTab: `border-b-2 text-gray-700 tracking-wide border-b-primary font-bold`,
     tab: "text-gray-500 text-base md:text-lg  duration-300 pb-1 tracking-wide ",
   };
 
   const renderTabs = () => {
     return (
-      <div className="flex space-x-3  md:space-x-7 border-b-[1px] border-b-slate-200 mt-2 mb-6">
+      <div className="flex justify-between items-start">
+      <div className="flex space-x-3 w-[70%]  md:space-x-7 border-b-[1px] border-b-slate-200 mt-2 mb-6">
         <button
-          className={`${style.tab}  ${activeTab === "Info" && style.activeTab}`}
+          className={`${style.tab}  ${activeTab === "Info" &&  style.activeTab} `}
           onClick={() => setactiveTab("Info")}
         >
           <p>Vehicle Information</p>
@@ -425,18 +569,65 @@ const VehicleForm = ({ toggleForm }) => {
         >
           <p>Sales</p>
         </button>
-        <div className="w-12" />
       </div>
+        <div className=" flex pb-5 justify-end">
+        <button
+            onClick={() => (isLoading ? {} : handleSubmit())}
+            className={`rounded-md border-[1px] border-secondary/60 text-secondary/60 
+     hover:bg-secondary hover:text-white w-32 hover:shadow-lg  duration-300
+    ease-in-out px-4 h-[40px] flex space-x-3 items-center justify-center`}
+          >
+            {isLoading && (
+              <BeatLoader
+                color={"#ff464c"}
+                loading={isLoading}
+                size={5}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+              />
+            )}
+            <p className="font-semibold text-xs">Save</p>
+          </button>
+          </div>
+          </div>
     );
   };
+
+  
+  const handleDeleteDBImages = (item, index) => {
+    //remove image from array but not update in database
+    // instead save the file name in delete Images array 
+    // on save we will delete these images
+
+    let temp = input.images.slice(0)
+    temp.splice(index, 1)
+    setinput({ ...input, images: temp })
+    let temp2 = deleteImages.slice(0)
+    temp2.push(item)
+    setdeleteImages(temp)
+
+  }
+
 
   const renderImageSection = () => {
     return (
       <div>
         <div className="flex space-x-4 mb-10">
+        {!!input.images && input.images.map((item, index) => (
+            <div key={item._id} className='h-28  overflow-hidden  w-40'>
+              <button
+                className="text-black z-10 absolute m-[5px]"
+                onClick={() => handleDeleteDBImages(item, index)}>
+                <AiFillCloseCircle
+                  size={20} />
+              </button>
+              <img className='w-full  rounded-md' src={imageURL + item} key={index + item} />
+            </div>
+
+          ))}
           {previewUrl.map((item, index) => (
             // {selectedFiles.map((item, index) => (
-            <div className="h-28  overflow-hidden  w-40">
+            <div  key={item._id}  className="h-28  overflow-hidden  w-40">
               <button
                 className="text-black z-10 absolute m-[5px]"
                 onClick={() => removeImageFromFileAndPreview(item, index)}
@@ -458,7 +649,21 @@ const VehicleForm = ({ toggleForm }) => {
   const renderButtonView = () => {
     return (
       <div className="flex items-center justify-between mt-4">
-        <div className="flex flex-col  md:w-[45%] -mt-6  space-x-4 md:flex-row">
+      {edit?
+        <div >
+            <label className={`${formStyle.label} font-bold`}>VIM Number</label>
+            <div className="mt-1 mb-1">
+              <input
+                disabled={true}
+                name={"vin"}
+                className={`${formStyle.input} bg-slate-100`}
+                value={input.vin}
+                onChange={onInputChange}
+              />
+            </div>
+          </div>
+        :  
+          <div className="flex flex-col  md:w-[45%] -mt-6  space-x-4 md:flex-row">
           <div>
             <label className={`${formStyle.label} font-bold`}>VIM Number</label>
             <div className="mt-1 mb-1">
@@ -482,7 +687,7 @@ const VehicleForm = ({ toggleForm }) => {
               <p className="text-white font-semibold text-xs">Fetch Details</p>
             </button>
           </div>
-        </div>
+        </div>}
 
         <div className="flex items-center  space-x-4 pt-7">
           <input
@@ -500,23 +705,7 @@ const VehicleForm = ({ toggleForm }) => {
           >
             <p className="font-semibold text-xs">Upload Images</p>
           </button>
-          <button
-            onClick={() => (isLoading ? {} : handleSubmit())}
-            className={`rounded-md border-[1px] border-secondary/60 text-secondary/60 
-     hover:bg-secondary hover:text-white w-32 mb-10 hover:shadow-lg  duration-300
-    ease-in-out px-4 h-[40px] flex space-x-3 items-center justify-center`}
-          >
-            {isLoading && (
-              <BeatLoader
-                color={"#ff464c"}
-                loading={isLoading}
-                size={5}
-                aria-label="Loading Spinner"
-                data-testid="loader"
-              />
-            )}
-            <p className="font-semibold text-xs">Save</p>
-          </button>
+        
         </div>
       </div>
     );
@@ -1075,7 +1264,7 @@ const VehicleForm = ({ toggleForm }) => {
         <div className="flex mt-4 items-center justify-end">
           <div>
             <div className="flex space-x-4 text-xs text-white">
-              {purchases.length > 0 ? (
+              {/* {purchases.length > 0 ? (
                 <div
                   onClick={handleSavePurchase}
                   className="bg-secondary w-32  px-4 h-[35px] flex space-x-3  rounded-md items-center justify-center
@@ -1083,7 +1272,7 @@ const VehicleForm = ({ toggleForm }) => {
                 >
                   Save Purchase
                 </div>
-              ) : null}
+              ) : null} */}
               <div
                 // onClick={()=>setaddNewModal(true)}
                 onClick={handleAddPurchase}
@@ -1246,7 +1435,7 @@ const VehicleForm = ({ toggleForm }) => {
         <div className="flex mt-4 items-center justify-end">
           <div>
             <div className="flex space-x-4 text-xs text-white">
-              {expenseItems.length > 0 ? (
+              {/* {expenseItems.length > 0 ? (
                 <div
                   onClick={handleSaveExpenses}
                   className="bg-secondary w-32 px-4 h-[35px] flex space-x-3 rounded-md items-center justify-center
@@ -1254,7 +1443,7 @@ const VehicleForm = ({ toggleForm }) => {
                 >
                   Save Expenses
                 </div>
-              ) : null}
+              ) : null} */}
               <div
                 onClick={handleAddExpense}
                 className="bg-secondary w-32 px-4 h-[35px] flex space-x-3 rounded-md items-center justify-center
@@ -1284,7 +1473,8 @@ const VehicleForm = ({ toggleForm }) => {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
-                  {expenseItems.map((expense, index) => (
+                  {expenseItems
+                  .map((expense, index) => (
                     <tr
                       className="hover:bg-gray-50 duration-300 ease-in-out "
                       key={index}
@@ -1367,8 +1557,8 @@ const VehicleForm = ({ toggleForm }) => {
                             display: "flex",
                             justifyContent: "center",
                           }}
-                          className="text-white w-50 p-3 mt-3  hover:text-white bg-primary "
-                          onClick={() => handleDeletePurchase(index)}
+                          className="text-white w-50 p-3 mt-3  hover:text-white bg-primary"
+                          onClick={() => handleDeleteExpenses(index)}
                         >
                           <BsTrashFill />
                         </button>
@@ -1431,14 +1621,14 @@ const VehicleForm = ({ toggleForm }) => {
         <div className="flex mt-4 items-center justify-end">
           <div>
             <div className="flex space-x-4 text-xs text-white">
-              {sales.length > 0 ? (
+              {/* {sales.length > 0 ? (
                 <div
                   onClick={handleSaveSale}
                   className="bg-secondary w-32 px-4 h-[35px] flex space-x-3 rounded-md items-center justify-center cursor-pointer hover:bg-primary duration-300 ease-in-out"
                 >
                   Save Sale
                 </div>
-              ) : null}
+              ) : null} */}
               <div
                 onClick={handleAddSale}
                 className="bg-secondary w-32 px-4 h-[35px] flex space-x-3 rounded-md items-center justify-center cursor-pointer hover:bg-primary duration-300 ease-in-out"
@@ -1568,7 +1758,7 @@ const VehicleForm = ({ toggleForm }) => {
                             justifyContent: "center",
                           }}
                           className="text-white w-50 p-3 mt-3  hover:text-white bg-primary "
-                          onClick={() => handleDeletePurchase(index)}
+                          onClick={() => handleDeleteSales(index)}
                         >
                           <BsTrashFill />
                         </button>
@@ -1592,7 +1782,7 @@ const VehicleForm = ({ toggleForm }) => {
                         HST Total:  {String( sales.reduce((total, obj) => total + obj.taxAmount, 0))}
                         </td>
                         <td className="p-0 px-1 text-sm font-medium text-right whitespace-nowrap">
-                       HST Total: {  sales.reduce((total2, obj2) => parseFloat( total2 + parseFloat(obj2.cost)), 0) ||0}
+                        Cost Total: {  sales.reduce((total2, obj2) => parseFloat( total2 + parseFloat(obj2.cost)), 0) ||0}
                          
                         </td>
                         <td className="p-0 px-1 text-sm font-medium text-right whitespace-nowrap">
